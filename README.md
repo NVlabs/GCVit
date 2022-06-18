@@ -16,7 +16,7 @@ and semantic segmentation using MS COCO and ADE20K datasets outperform prior wor
 
 ![teaser](./assets/attention.png)
 
-#Results on ImageNet
+# Results on ImageNet
 
 **ImageNet-1K Pretrained Models**
 

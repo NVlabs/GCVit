@@ -2,7 +2,7 @@
 
 
 ## Updates
-***06/20/2022***
+***06/17/2022***
 
 ImageNet-1K classification code for GC ViT released.
 

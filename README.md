@@ -1,5 +1,8 @@
 # Global Vision Context Transformer (GC ViT)
 
+This repository is the official PyTorch implementation of Global Vision Context
+Transformers.
+
 
 ## Updates
 ***06/17/2022***
@@ -27,7 +30,7 @@ and semantic segmentation using MS COCO and ADE20K datasets outperform prior wor
     <th>Resolution</th>
     <th>#Params</th>
     <th>FLOPs</th>
-    <th>Log</th>
+    <th>Performance Summary</th>
     <th>Tensorboard</th>
     <th>Download </th>
   </tr>
@@ -37,8 +40,8 @@ and semantic segmentation using MS COCO and ADE20K datasets outperform prior wor
     <td>224x224</td>
     <td>28</td>
     <td>4.7</td>
-    <td><a href="https://add_to_log">log</a></td>
-    <td><a href="https://add_to_tensorboard">tensorboard</a></td>
+    <td><a href="https://drive.google.com/file/d/1FkuzQPMS5hIKrNtvP0KUpWENWIUmUCgD/view?usp=sharing">summary</a></td>
+    <td><a href="https://tensorboard.dev/experiment/z3JpGy29T0awoDlRofeLPA">tensorboard</a></td>
     <td><a href="https://add_to_model">model</a></td>
 </tr>
 
@@ -48,8 +51,8 @@ and semantic segmentation using MS COCO and ADE20K datasets outperform prior wor
     <td>224x224</td>
     <td>51</td>
     <td>8.5</td>
-    <td><a href="https://add_to_log">log</a></td>
-    <td><a href="https://add_to_tensorboard">tensorboard</a></td>
+    <td><a href="https://drive.google.com/file/d/1--l6JycRAOu0HKJLJzpSe3gT7SyLpAkr/view?usp=sharing">summary</a></td>
+    <td><a href="https://tensorboard.dev/experiment/YRDDGcYwTrWddlrp0zzX8w">tensorboard</a></td>
     <td><a href="https://add_to_model">model</a></td>
 </tr>
 
@@ -59,8 +62,8 @@ and semantic segmentation using MS COCO and ADE20K datasets outperform prior wor
     <td>224x224</td>
     <td>90</td>
     <td>14.8</td>
-    <td><a href="https://add_to_log">log</a></td>
-    <td><a href="https://add_to_tensorboard">tensorboard</a></td>
+    <td><a href="https://drive.google.com/file/d/167gxKLksnyQ9YMH6reGInKOiWAWWZuQ0/view?usp=sharing">summary</a></td>
+    <td><a href="https://tensorboard.dev/experiment/qaLWmWiLRBOcBNgeUanLMg">tensorboard</a></td>
     <td><a href="https://add_to_model">model</a></td>
 </tr>
 

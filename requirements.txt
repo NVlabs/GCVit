@@ -1,0 +1,6 @@
+timm==0.5.4
+pyyaml==6.0
+termcolor==1.1.0
+tensorboardX==2.5
+opencv-python==4.4.0.46
+yacs==0.1.8

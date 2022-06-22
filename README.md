@@ -3,7 +3,7 @@
 This repository is the official PyTorch implementation of **Global Context Vision Transformers**. \
  \
 [Global Context Vision
-Transformers](https://drive.google.com/file/d/1GyQ-XvVpQF8U9uzpIBrOok-YximImBeS/view?usp=sharing) \
+Transformers](https://arxiv.org/pdf/2206.09959.pdf) \
 [Ali Hatamizadeh](http://web.cs.ucla.edu/~ahatamiz),
 [Hongxu (Danny) Yin](https://scholar.princeton.edu/hongxu), [Jan Kautz](https://jankautz.com/), 
 and [Pavlo Molchanov](https://www.pmolchanov.com/).
@@ -154,9 +154,12 @@ This repository is built upon the [timm](https://github.com/rwightman/pytorch-im
 Please consider citing GC ViT paper if it is useful for your work:
 
 ```
-@inproceedings{hatamizadeh2022gcvit,
+@misc{hatamizadeh2022global,
     title={Global Context Vision Transformers},
     author={Ali Hatamizadeh and Hongxu Yin and Jan Kautz and Pavlo Molchanov},
     year={2022},
+    eprint={2206.09959},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
 }
 ```

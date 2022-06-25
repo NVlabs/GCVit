@@ -153,7 +153,7 @@ python validate.py --model <model-name> --checkpoint <checkpoint-path> --data_di
 
 This repository is built upon the [timm](https://github.com/rwightman/pytorch-image-models) library. 
 
-## License and Citation
+## Citation
 
 Please consider citing GC ViT paper if it is useful for your work:
 
@@ -168,6 +168,12 @@ Please consider citing GC ViT paper if it is useful for your work:
 }
 ```
 
+## Licenses
+
 Copyright © 2022, NVIDIA Corporation. All rights reserved.
 
 This work is made available under the Nvidia Source Code License-NC. Click [here](LICENSE) to view a copy of this license.
+
+The pre-trained models are shared under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+For license information regarding the ImageNet dataset, please refer to the [official website](https://www.image-net.org/). 

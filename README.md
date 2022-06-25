@@ -170,4 +170,4 @@ Please consider citing GC ViT paper if it is useful for your work:
 
 Copyright © 2022, NVIDIA Corporation. All rights reserved.
 
-This work is made available under the Nvidia Source Code License-NC. Click [here](LICENSE.txt) to view a copy of this license.
+This work is made available under the Nvidia Source Code License-NC. Click [here](LICENSE) to view a copy of this license.

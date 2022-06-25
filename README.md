@@ -38,6 +38,7 @@ operations such as computing attention masks or shifting local windows.
   <tr>
     <th>Name</th>
     <th>Acc@1</th>
+    <th>Acc@5</th>
     <th>Resolution</th>
     <th>#Params</th>
     <th>FLOPs</th>
@@ -48,6 +49,7 @@ operations such as computing attention masks or shifting local windows.
 <tr>
     <td>GC ViT-T</td>
     <td>83.2</td>
+    <td>96.3</td>
     <td>224x224</td>
     <td>28</td>
     <td>4.7</td>
@@ -59,6 +61,7 @@ operations such as computing attention masks or shifting local windows.
 <tr>
     <td>GC ViT-S</td>
     <td>83.9</td>
+    <td>96.5</td>
     <td>224x224</td>
     <td>51</td>
     <td>8.5</td>
@@ -70,6 +73,7 @@ operations such as computing attention masks or shifting local windows.
 <tr>
     <td>GC ViT-B</td>
     <td>84.4</td>
+    <td>96.9</td>
     <td>224x224</td>
     <td>90</td>
     <td>14.8</td>

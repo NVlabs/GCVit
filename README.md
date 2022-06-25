@@ -153,7 +153,7 @@ python validate.py --model <model-name> --checkpoint <checkpoint-path> --data_di
 
 This repository is built upon the [timm](https://github.com/rwightman/pytorch-image-models) library. 
 
-## Citation
+## License and Citation
 
 Please consider citing GC ViT paper if it is useful for your work:
 
@@ -167,3 +167,7 @@ Please consider citing GC ViT paper if it is useful for your work:
     primaryClass={cs.CV}
 }
 ```
+
+Copyright © 2022, NVIDIA Corporation. All rights reserved.
+
+This work is made available under the Nvidia Source Code License-NC. Click [here](LICENSE.txt) to view a copy of this license.

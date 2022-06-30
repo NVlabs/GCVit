@@ -93,6 +93,7 @@ class PatchEmbed(nn.Module):
         x = self.conv_down(x)
         return x
 
+
 class FeatExtract(nn.Module):
     def __init__(self, dim, keep_dim=False):
         super().__init__()

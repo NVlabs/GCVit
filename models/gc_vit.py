@@ -1,14 +1,3 @@
-#!/usr/bin/env python3
-
-# Copyright (c) 2022, NVIDIA CORPORATION.  All rights reserved.
-#
-# NVIDIA CORPORATION and its licensors retain all intellectual property
-# and proprietary rights in and to this software, related documentation
-# and any modifications thereto.  Any use, reproduction, disclosure or
-# distribution of this software and related documentation without an express
-# license agreement from NVIDIA CORPORATION is strictly prohibited.
-
-
 import torch
 import torch.nn as nn
 from timm.models.layers import trunc_normal_, DropPath, to_2tuple
@@ -468,20 +457,7 @@ class GCViT(nn.Module):
 
 
 @register_model
-def gc_vit_xmini(pretrained=False, **kwargs):
-    model = GCViT(depths=[2, 4, 6, 4],
-                  num_heads=[2, 4, 8, 16],
-                  window_size=[7, 7, 14, 7],
-                  dim=64,
-                  mlp_ratio=3,
-                  drop_path_rate=0.2,
-                  **kwargs)
-    if pretrained:
-        model.load_state_dict(torch.load(pretrained))
-    return model
-
-@register_model
-def gc_vit_xxmini(pretrained=False, **kwargs):
+def gc_vit_xxtiny(pretrained=False, **kwargs):
     model = GCViT(depths=[2, 2, 6, 2],
                   num_heads=[2, 4, 8, 16],
                   window_size=[7, 7, 14, 7],
@@ -493,21 +469,9 @@ def gc_vit_xxmini(pretrained=False, **kwargs):
         model.load_state_dict(torch.load(pretrained))
     return model
 
-@register_model
-def gc_vit_xxxmini(pretrained=False, **kwargs):
-    model = GCViT(depths=[2, 2, 4, 2],
-                  num_heads=[2, 4, 8, 16],
-                  window_size=[7, 7, 14, 7],
-                  dim=64,
-                  mlp_ratio=3,
-                  drop_path_rate=0.2,
-                  **kwargs)
-    if pretrained:
-        model.load_state_dict(torch.load(pretrained))
-    return model
 
 @register_model
-def gc_vit_mini(pretrained=False, **kwargs):
+def gc_vit_xtiny(pretrained=False, **kwargs):
     model = GCViT(depths=[3, 4, 6, 5],
                   num_heads=[2, 4, 8, 16],
                   window_size=[7, 7, 14, 7],

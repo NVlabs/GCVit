@@ -22,9 +22,8 @@ from contextlib import suppress
 
 from timm.models import create_model, apply_test_time_pool, load_checkpoint, is_model, list_models
 from timm.data import create_dataset, create_loader, resolve_data_config, RealLabelsImagenet
-from timm.utils import accuracy, AverageMeter, natural_key, setup_default_logging, set_jit_fuser
+from timm.utils import accuracy, AverageMeter, natural_key, setup_default_logging, set_jit_legacy
 from models.gc_vit import *
-
 has_apex = False
 try:
     from apex import amp
@@ -44,7 +43,7 @@ _logger = logging.getLogger('validate')
 
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Validation')
-parser.add_argument('data', metavar='DIR',
+parser.add_argument('--data_dir', metavar='DIR',
                     help='path to dataset')
 parser.add_argument('--dataset', '-d', metavar='NAME', default='',
                     help='dataset type (default: ImageFolder/ImageTar if empty)')
@@ -178,7 +177,7 @@ def validate(args):
     criterion = nn.CrossEntropyLoss().cuda()
 
     dataset = create_dataset(
-        root=args.data, name=args.dataset, split=args.split,
+        root=args.data_dir, name=args.dataset, split=args.split,
         download=args.dataset_download, load_bytes=args.tf_preprocessing, class_map=args.class_map)
 
     if args.valid_labels:

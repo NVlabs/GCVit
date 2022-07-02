@@ -163,13 +163,11 @@ This repository is built upon the [timm](https://github.com/rwightman/pytorch-im
 Please consider citing GC ViT paper if it is useful for your work:
 
 ```
-@misc{hatamizadeh2022global,
-    title={Global Context Vision Transformers},
-    author={Ali Hatamizadeh and Hongxu Yin and Jan Kautz and Pavlo Molchanov},
-    year={2022},
-    eprint={2206.09959},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+@article{hatamizadeh2022global,
+  title={Global Context Vision Transformers},
+  author={Hatamizadeh, Ali and Yin, Hongxu and Kautz, Jan and Molchanov, Pavlo},
+  journal={arXiv preprint arXiv:2206.09959},
+  year={2022}
 }
 ```
 

@@ -18,6 +18,11 @@ The architecture of GC ViT is demonstrated in the following:
 ![teaser](./assets/gc_vit.png)
 
 ## Updates
+
+***06/17/2022***
+
+1. Pre-trained model weights released. Please see below for download link. 
+
 ***06/17/2022***
 
 1. GC ViT model, training and validation scripts released for ImageNet-1K classification.
@@ -55,7 +60,7 @@ operations such as computing attention masks or shifting local windows.
     <td>4.7</td>
     <td><a href="https://drive.google.com/file/d/1FkuzQPMS5hIKrNtvP0KUpWENWIUmUCgD/view?usp=sharing">summary</a></td>
     <td><a href="https://tensorboard.dev/experiment/z3JpGy29T0awoDlRofeLPA">tensorboard</a></td>
-    <td><a href="https://add_to_model">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1sT7oNC-LUyOE1yhJACrODx5Tk1FQHddr/view?usp=sharing">model</a></td>
 </tr>
 
 <tr>
@@ -67,7 +72,7 @@ operations such as computing attention masks or shifting local windows.
     <td>8.5</td>
     <td><a href="https://drive.google.com/file/d/1--l6JycRAOu0HKJLJzpSe3gT7SyLpAkr/view?usp=sharing">summary</a></td>
     <td><a href="https://tensorboard.dev/experiment/YRDDGcYwTrWddlrp0zzX8w">tensorboard</a></td>
-    <td><a href="https://add_to_model">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1tpVAJiq_f-D0qOISKDbQL5poV3Ac9XxA/view?usp=sharing">model</a></td>
 </tr>
 
 <tr>
@@ -79,7 +84,7 @@ operations such as computing attention masks or shifting local windows.
     <td>14.8</td>
     <td><a href="https://drive.google.com/file/d/167gxKLksnyQ9YMH6reGInKOiWAWWZuQ0/view?usp=sharing">summary</a></td>
     <td><a href="https://tensorboard.dev/experiment/qaLWmWiLRBOcBNgeUanLMg">tensorboard</a></td>
-    <td><a href="https://add_to_model">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1IMg4CnHkiFa2jHZYb3JxT3PdK61WjVQ5/view?usp=sharing">model</a></td>
 </tr>
 
 </table>

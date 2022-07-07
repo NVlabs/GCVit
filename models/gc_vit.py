@@ -379,10 +379,7 @@ class GCViTLayer(nn.Module):
         self.resolution = input_resolution
 
     def forward(self, x):
-        q_global = self.to_q_global(x.view(-1,
-                                           self.dim,
-                                           self.resolution,
-                                           self.resolution))
+        q_global = self.to_q_global(x.permute(0, 3, 1, 2)).permute(0, 2, 3, 1)
         for blk in self.blocks:
             x = blk(x, q_global)
         if self.downsample is None:

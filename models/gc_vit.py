@@ -220,8 +220,8 @@ class WindowAttentionGlobal(nn.Module):
 
         kv = self.qkv(x).reshape(B_, N, 2, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
         k, v = kv[0], kv[1]
-        q_global = q_global.repeat(B_//B, 1, 1, 1)
-        q = q_global.reshape(B_, self.num_heads, N, C // self.num_heads)
+        q_global = q_global.reshape(B, 1, N, self.num_heads, C // self.num_heads).permute(0, 1, 3, 2, 4)
+        q = q_global.repeat(1, B_//B, 1, 1, 1).reshape(B_, self.num_heads, N, C // self.num_heads)
         q = q * self.scale
         attn = (q @ k.transpose(-2, -1))
 

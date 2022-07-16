@@ -179,4 +179,6 @@ This work is made available under the Nvidia Source Code License-NC. Click [here
 
 The pre-trained models are shared under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
+For license information regarding the timm repository, please refer to the [official website](https://github.com/rwightman/pytorch-image-models).
+
 For license information regarding the ImageNet dataset, please refer to the [official website](https://www.image-net.org/). 

@@ -60,8 +60,8 @@ operations such as computing attention masks or shifting local windows.
     <td>79.78</td>
     <td>95.19</td>
     <td>224x224</td>
-    <td>28</td>
-    <td>4.7</td>
+    <td>12</td>
+    <td>2.1</td>
     <td><a href="https://drive.google.com/file/d/12iHMS3qDFPmgD14m4o8ii-KZF04Pr6Yv/view?usp=sharing">summary</a></td>
     <td><a href="https://drive.google.com/file/d/1jjtpQGQWFf-ZHhtYSwjZk92cd-2OaRIn/view?usp=sharing">model</a></td>
 </tr>
@@ -70,8 +70,8 @@ operations such as computing attention masks or shifting local windows.
     <td>81.95</td>
     <td>95.86</td>
     <td>224x224</td>
-    <td>28</td>
-    <td>4.7</td>
+    <td>20</td>
+    <td>2.6</td>
     <td><a href="https://drive.google.com/file/d/15dXCrkoGgY2p2n2-TTH1hGIe2oDzmMrL/view?usp=sharing">summary</a></td>
     <td><a href="https://drive.google.com/file/d/1Rul1151CpW-1p9jBUztZWf_LEnISxMzQ/view?usp=sharing">model</a></td>
 </tr>

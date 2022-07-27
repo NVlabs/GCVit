@@ -39,7 +39,7 @@ from timm.utils import ApexScaler, NativeScaler
 from scheduler.scheduler_factory import create_scheduler
 from models.gc_vit import *
 from tensorboard import TensorboardLogger
-import pdb
+
 try:
     from apex import amp
     from apex.parallel import DistributedDataParallel as ApexDDP
@@ -738,9 +738,6 @@ def train_one_epoch(
                 utils.dispatch_clip_grad(
                     model_parameters(model, exclude_head='agc' in args.clip_mode),
                     value=args.clip_grad, mode=args.clip_mode)
-            for name, param in model.named_parameters():
-                if param.grad is None:
-                    print(name)
             optimizer.step()
 
         if model_ema is not None:
@@ -862,116 +859,6 @@ def validate(model, loader, loss_fn, args, amp_autocast=suppress, log_suffix='')
 
     metrics = OrderedDict([('loss', losses_m.avg), ('top1', top1_m.avg), ('top5', top5_m.avg)])
     return metrics
-
-
-# def create_scheduler(args, optimizer):
-#     iters_per_epoch = args.data_len // (args.batch_size * args.world_size)
-#     num_epochs = args.epochs
-#     num_steps = num_epochs * iters_per_epoch
-#     warmup_steps = args.warmup_epochs * iters_per_epoch
-#     patience_steps = args.patience_epochs * iters_per_epoch
-#     decay_steps = args.decay_epochs * iters_per_epoch
-#
-#     if getattr(args, 'lr_noise', None) is not None:
-#         lr_noise = getattr(args, 'lr_noise')
-#         if isinstance(lr_noise, (list, tuple)):
-#             noise_range = [n * num_epochs for n in lr_noise]
-#             if len(noise_range) == 1:
-#                 noise_range = noise_range[0]
-#         else:
-#             noise_range = lr_noise * num_epochs
-#     else:
-#         noise_range = None
-#     noise_args = dict(
-#         noise_range_t=noise_range,
-#         noise_pct=getattr(args, 'lr_noise_pct', 0.67),
-#         noise_std=getattr(args, 'lr_noise_std', 1.),
-#         noise_seed=getattr(args, 'seed', 42),
-#     )
-#     cycle_args = dict(
-#         cycle_mul=getattr(args, 'lr_cycle_mul', 1.),
-#         cycle_decay=getattr(args, 'lr_cycle_decay', 0.1),
-#         cycle_limit=getattr(args, 'lr_cycle_limit', 1),
-#     )
-#
-#     lr_scheduler = None
-#     if args.sched == 'cosine':
-#         lr_scheduler = CosineLRScheduler(
-#             optimizer,
-#             t_initial=num_epochs if args.lr_ep else num_steps,
-#             lr_min=args.min_lr,
-#             warmup_lr_init=args.warmup_lr,
-#             warmup_t=args.warmup_epochs if args.lr_ep else warmup_steps,
-#             k_decay=getattr(args, 'lr_k_decay', 1.0),
-#             t_in_epochs=args.lr_ep,
-#             **cycle_args,
-#             **noise_args,
-#         )
-#         cycle_length = lr_scheduler.get_cycle_length() if args.lr_ep else lr_scheduler.get_cycle_length() // iters_per_epoch
-#         num_epochs = cycle_length + args.cooldown_epochs
-#     elif args.sched == 'tanh':
-#         lr_scheduler = TanhLRScheduler(
-#             optimizer,
-#             t_initial=num_epochs if args.sched_epochwise else num_steps,
-#             lr_min=args.min_lr,
-#             warmup_lr_init=args.warmup_lr,
-#             warmup_t=args.warmup_epochs if args.sched_epochwise else warmup_steps,
-#             t_in_epochs=args.sched_epochwise,
-#             **cycle_args,
-#             **noise_args,
-#         )
-#         cycle_length = lr_scheduler.get_cycle_length() if args.sched_epochwise else lr_scheduler.get_cycle_length() // iters_per_epoch
-#         num_epochs = cycle_length + args.cooldown_epochs
-#     elif args.sched == 'step':
-#         lr_scheduler = StepLRScheduler(
-#             optimizer,
-#             decay_t=args.decay_epochs if args.sched_epochwise else decay_steps,
-#             decay_rate=args.decay_rate,
-#             warmup_lr_init=args.warmup_lr,
-#             warmup_t=args.warmup_epochs if args.sched_epochwise else warmup_steps,
-#             t_in_epochs=args.sched_epochwise,
-#             **noise_args,
-#         )
-#     elif args.sched == 'multistep':
-#         lr_scheduler = MultiStepLRScheduler(
-#             optimizer,
-#             decay_t=args.decay_epochs if args.sched_epochwise else decay_steps,
-#             decay_rate=args.decay_rate,
-#             warmup_lr_init=args.warmup_lr,
-#             warmup_t=args.warmup_epochs if args.sched_epochwise else warmup_steps,
-#             t_in_epochs=args.sched_epochwise,
-#             **noise_args,
-#         )
-#     elif args.sched == 'plateau':
-#         mode = 'min' if 'loss' in getattr(args, 'eval_metric', '') else 'max'
-#         lr_scheduler = PlateauLRScheduler(
-#             optimizer,
-#             decay_rate=args.decay_rate,
-#             patience_t=args.patience_epochs if args.sched_epochwise else patience_steps,
-#             lr_min=args.min_lr,
-#             mode=mode,
-#             warmup_lr_init=args.warmup_lr,
-#             warmup_t=args.warmup_epochs if args.sched_epochwise else warmup_steps,
-#             cooldown_t=0,
-#             **noise_args,
-#         )
-#     elif args.sched == 'poly':
-#         lr_scheduler = PolyLRScheduler(
-#             optimizer,
-#             power=args.decay_rate,  # overloading 'decay_rate' as polynomial power
-#             t_initial=num_epochs if args.sched_epochwise else num_steps,
-#             lr_min=args.min_lr,
-#             warmup_lr_init=args.warmup_lr,
-#             warmup_t=args.warmup_epochs if args.sched_epochwise else warmup_steps,
-#             k_decay=getattr(args, 'lr_k_decay', 1.0),
-#             t_in_epochs=args.sched_epochwise,
-#             **cycle_args,
-#             **noise_args,
-#         )
-#         cycle_length = lr_scheduler.get_cycle_length() if args.sched_epochwise else lr_scheduler.get_cycle_length() // iters_per_epoch
-#         num_epochs = cycle_length + args.cooldown_epochs
-#
-#     return lr_scheduler, num_epochs
 
 if __name__ == '__main__':
     main()

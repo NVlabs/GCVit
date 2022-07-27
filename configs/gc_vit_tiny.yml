@@ -1,9 +1,8 @@
 model: gc_vit_tiny
-model_ema: false
 epochs: 310
 warmup_epochs: 20
 cooldown_epochs: 10
-batch_size: 128
+batch_size: 32
 opt: adamw
 lr: 1e-3
 lr_ep: False
@@ -20,3 +19,6 @@ cutmix: 1.0
 clip_grad: 5.0
 clip_mode: norm
 color_jitter: 0.4
+model_ema: true
+model_ema_decay: 0.9998
+model_ema_force_cpu: false

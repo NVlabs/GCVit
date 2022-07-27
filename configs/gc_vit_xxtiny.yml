@@ -1,10 +1,10 @@
-model: gc_vit_small
+model: gc_vit_xxtiny
 epochs: 310
 warmup_epochs: 20
 cooldown_epochs: 10
-batch_size: 32
+batch_size: 128
 opt: adamw
-lr: 1e-3
+lr: 0.005
 lr_ep: False
 lr_cycle_decay: 1.0
 lr_cycle_limit: 1

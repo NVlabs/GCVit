@@ -15,8 +15,79 @@ from timm.models.layers import trunc_normal_, DropPath, to_2tuple
 from timm.models.registry import register_model
 
 
+def _to_channel_last(x):
+    """
+    Args:
+        x: (B, C, H, W)
+
+    Returns:
+        x: (B, H, W, C)
+    """
+    return x.permute(0, 2, 3, 1)
+
+
+def _to_channel_first(x):
+    """
+    Args:
+        x: (B, H, W, C)
+
+    Returns:
+        x: (B, C, H, W)
+    """
+    return x.permute(0, 3, 1, 2)
+
+
+def window_partition(x, window_size):
+    """
+    Args:
+        x: (B, H, W, C)
+        window_size: window size
+
+    Returns:
+        local window features (num_windows*B, window_size, window_size, C)
+    """
+    B, H, W, C = x.shape
+    x = x.view(B, H // window_size, window_size, W // window_size, window_size, C)
+    windows = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(-1, window_size, window_size, C)
+    return windows
+
+
+def window_reverse(windows, window_size, H, W):
+    """
+    Args:
+        windows: local window features (num_windows*B, window_size, window_size, C)
+        window_size: Window size
+        H: Height of image
+        W: Width of image
+
+    Returns:
+        x: (B, H, W, C)
+    """
+    B = int(windows.shape[0] / (H * W / window_size / window_size))
+    x = windows.view(B, H // window_size, W // window_size, window_size, window_size, -1)
+    x = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(B, H, W, -1)
+    return x
+
+
 class Mlp(nn.Module):
-    def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
+    """
+    Multi-Layer Perceptron (MLP) block
+    """
+    def __init__(self,
+                 in_features,
+                 hidden_features=None,
+                 out_features=None,
+                 act_layer=nn.GELU,
+                 drop=0.):
+        """
+        Args:
+            in_features: input features dimension.
+            hidden_features: hidden features dimension.
+            out_features: output features dimension.
+            act_layer: activation function.
+            drop: dropout rate.
+        """
+
         super().__init__()
         out_features = out_features or in_features
         hidden_features = hidden_features or in_features
@@ -35,7 +106,20 @@ class Mlp(nn.Module):
 
 
 class SE(nn.Module):
-    def __init__(self, inp, oup, expansion=0.25):
+    """
+    Squeeze and excitation block
+    """
+    def __init__(self,
+                 inp,
+                 oup,
+                 expansion=0.25):
+        """
+        Args:
+            inp: input features dimension.
+            oup: output features dimension.
+            expansion: expansion ratio.
+        """
+
         super().__init__()
         self.avg_pool = nn.AdaptiveAvgPool2d(1)
         self.fc = nn.Sequential(
@@ -53,9 +137,21 @@ class SE(nn.Module):
 
 
 class ReduceSize(nn.Module):
-    def __init__(self, dim,
+    """
+    Down-sampling block based on: "Hatamizadeh et al.,
+    Global Context Vision Transformers <https://arxiv.org/abs/2206.09959>"
+    """
+    def __init__(self,
+                 dim,
                  norm_layer=nn.LayerNorm,
                  keep_dim=False):
+        """
+        Args:
+            dim: feature size dimension.
+            norm_layer: normalization layer.
+            keep_dim: bool argument for maintaining the resolution.
+        """
+
         super().__init__()
         self.conv = nn.Sequential(
             nn.Conv2d(dim, dim, 3, 1, 1,
@@ -75,27 +171,49 @@ class ReduceSize(nn.Module):
     def forward(self, x):
         x = x.contiguous()
         x = self.norm1(x)
-        x = x.permute(0, 3, 1, 2)
+        x = _to_channel_first(x)
         x = x + self.conv(x)
-        x = self.reduction(x).permute(0, 2, 3, 1)
+        x = self.reduction(x)
+        x = _to_channel_last(x)
         x = self.norm2(x)
         return x
 
 
 class PatchEmbed(nn.Module):
+    """
+    Patch embedding block based on: "Hatamizadeh et al.,
+    Global Context Vision Transformers <https://arxiv.org/abs/2206.09959>"
+    """
     def __init__(self, in_chans=3, dim=96):
+        """
+        Args:
+            in_chans: number of input channels.
+            dim: feature size dimension.
+        """
+
         super().__init__()
         self.proj = nn.Conv2d(in_chans, dim, 3, 2, 1)
         self.conv_down = ReduceSize(dim=dim, keep_dim=True)
 
     def forward(self, x):
-        x = self.proj(x).permute(0, 2, 3, 1)
+        x = self.proj(x)
+        x = _to_channel_last(x)
         x = self.conv_down(x)
         return x
 
 
 class FeatExtract(nn.Module):
+    """
+    Feature extraction block based on: "Hatamizadeh et al.,
+    Global Context Vision Transformers <https://arxiv.org/abs/2206.09959>"
+    """
     def __init__(self, dim, keep_dim=False):
+        """
+        Args:
+            dim: feature size dimension.
+            keep_dim: bool argument for maintaining the resolution.
+        """
+
         super().__init__()
         self.conv = nn.Sequential(
             nn.Conv2d(dim, dim, 3, 1, 1,
@@ -117,7 +235,11 @@ class FeatExtract(nn.Module):
 
 
 class WindowAttention(nn.Module):
-
+    """
+    Local window attention based on: "Liu et al.,
+    Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
+    <https://arxiv.org/abs/2103.14030>"
+    """
     def __init__(self,
                  dim,
                  num_heads,
@@ -127,6 +249,16 @@ class WindowAttention(nn.Module):
                  attn_drop=0.,
                  proj_drop=0.,
                  ):
+        """
+        Args:
+            dim: feature size dimension.
+            num_heads: number of attention head.
+            window_size: window size.
+            qkv_bias: bool argument for query, key, value learnable bias.
+            qk_scale: bool argument to scaling query, key.
+            attn_drop: attention dropout rate.
+            proj_drop: output dropout rate.
+        """
 
         super().__init__()
         window_size = (window_size,window_size)
@@ -156,7 +288,6 @@ class WindowAttention(nn.Module):
         self.softmax = nn.Softmax(dim=-1)
 
     def forward(self, x, q_global):
-
         B_, N, C = x.shape
         qkv = self.qkv(x).reshape(B_, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
         q, k, v = qkv[0], qkv[1], qkv[2]
@@ -176,8 +307,12 @@ class WindowAttention(nn.Module):
 
 
 class WindowAttentionGlobal(nn.Module):
-
-    def __init__(self, dim,
+    """
+    Global window attention based on: "Hatamizadeh et al.,
+    Global Context Vision Transformers <https://arxiv.org/abs/2206.09959>"
+    """
+    def __init__(self,
+                 dim,
                  num_heads,
                  window_size,
                  qkv_bias=True,
@@ -185,16 +320,25 @@ class WindowAttentionGlobal(nn.Module):
                  attn_drop=0.,
                  proj_drop=0.,
                  ):
+        """
+        Args:
+            dim: feature size dimension.
+            num_heads: number of attention head.
+            window_size: window size.
+            qkv_bias: bool argument for query, key, value learnable bias.
+            qk_scale: bool argument to scaling query, key.
+            attn_drop: attention dropout rate.
+            proj_drop: output dropout rate.
+        """
 
         super().__init__()
-        window_size = (window_size,window_size)
+        window_size = (window_size, window_size)
         self.window_size = window_size
         self.num_heads = num_heads
         head_dim = dim // num_heads
         self.scale = qk_scale or head_dim ** -0.5
         self.relative_position_bias_table = nn.Parameter(
             torch.zeros((2 * window_size[0] - 1) * (2 * window_size[1] - 1), num_heads))
-
         coords_h = torch.arange(self.window_size[0])
         coords_w = torch.arange(self.window_size[1])
         coords = torch.stack(torch.meshgrid([coords_h, coords_w]))
@@ -214,17 +358,14 @@ class WindowAttentionGlobal(nn.Module):
         self.softmax = nn.Softmax(dim=-1)
 
     def forward(self, x, q_global):
-
         B_, N, C = x.shape
         B = q_global.shape[0]
-
         kv = self.qkv(x).reshape(B_, N, 2, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
         k, v = kv[0], kv[1]
-        q_global = q_global.repeat(B_//B, 1, 1, 1)
+        q_global = q_global.repeat(1, B_ // B, 1, 1, 1)
         q = q_global.reshape(B_, self.num_heads, N, C // self.num_heads)
         q = q * self.scale
         attn = (q @ k.transpose(-2, -1))
-
         relative_position_bias = self.relative_position_bias_table[self.relative_position_index.view(-1)].view(
             self.window_size[0] * self.window_size[1], self.window_size[0] * self.window_size[1], -1)
         relative_position_bias = relative_position_bias.permute(2, 0, 1).contiguous()
@@ -237,23 +378,11 @@ class WindowAttentionGlobal(nn.Module):
         return x
 
 
-def window_partition(x, window_size):
-
-    B, H, W, C = x.shape
-    x = x.view(B, H // window_size, window_size, W // window_size, window_size, C)
-    windows = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(-1, window_size, window_size, C)
-    return windows
-
-
-def window_reverse(windows, window_size, H, W):
-
-    B = int(windows.shape[0] / (H * W / window_size / window_size))
-    x = windows.view(B, H // window_size, W // window_size, window_size, window_size, -1)
-    x = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(B, H, W, -1)
-    return x
-
-
 class GCViTBlock(nn.Module):
+    """
+    GCViT block based on: "Hatamizadeh et al.,
+    Global Context Vision Transformers <https://arxiv.org/abs/2206.09959>"
+    """
     def __init__(self,
                  dim,
                  input_resolution,
@@ -270,6 +399,24 @@ class GCViTBlock(nn.Module):
                  norm_layer=nn.LayerNorm,
                  layer_scale=None,
                  ):
+        """
+        Args:
+            dim: feature size dimension.
+            input_resolution: input image resolution.
+            num_heads: number of attention head.
+            window_size: window size.
+            mlp_ratio: MLP ratio.
+            qkv_bias: bool argument for query, key, value learnable bias.
+            qk_scale: bool argument to scaling query, key.
+            drop: dropout rate.
+            attn_drop: attention dropout rate.
+            drop_path: drop path rate.
+            act_layer: activation function.
+            attention: attention block type.
+            norm_layer: normalization layer.
+            layer_scale: layer scaling coefficient.
+        """
+
         super().__init__()
         self.window_size = window_size
         self.norm1 = norm_layer(dim)
@@ -310,41 +457,26 @@ class GCViTBlock(nn.Module):
             return x
 
 
-class GCViTLayer(nn.Module):
+class GlobalQueryGen(nn.Module):
+    """
+    Global query generator based on: "Hatamizadeh et al.,
+    Global Context Vision Transformers <https://arxiv.org/abs/2206.09959>"
+    """
+
     def __init__(self,
                  dim,
-                 depth,
                  input_resolution,
-                 num_heads,
                  window_size,
-                 downsample=True,
-                 mlp_ratio=4.,
-                 qkv_bias=True,
-                 qk_scale=None,
-                 drop=0.,
-                 attn_drop=0.,
-                 drop_path=0.,
-                 norm_layer=nn.LayerNorm,
-                 layer_scale=None):
+                 num_heads):
+        """
+        Args:
+            dim: feature size dimension.
+            input_resolution: input image resolution.
+            window_size: window size.
+            num_heads: number of heads.
+        """
+
         super().__init__()
-        self.blocks = nn.ModuleList([
-            GCViTBlock(dim=dim,
-                       num_heads=num_heads,
-                       window_size=window_size,
-                       mlp_ratio=mlp_ratio,
-                       qkv_bias=qkv_bias,
-                       qk_scale=qk_scale,
-                       attention=WindowAttention if (i % 2 == 0) else WindowAttentionGlobal,
-                       drop=drop,
-                       attn_drop=attn_drop,
-                       drop_path=drop_path[i] if isinstance(drop_path, list) else drop_path,
-                       norm_layer=norm_layer,
-                       layer_scale=layer_scale,
-                       input_resolution=input_resolution)
-            for i in range(depth)])
-
-        self.downsample = None if not downsample else ReduceSize(dim=dim, norm_layer=norm_layer)
-
         if input_resolution == 56:
             self.to_q_global = nn.Sequential(
                 FeatExtract(dim, keep_dim=False),
@@ -375,14 +507,78 @@ class GCViTLayer(nn.Module):
                 FeatExtract(dim, keep_dim=True)
             )
 
-        self.dim = dim
         self.resolution = input_resolution
+        self.num_heads = num_heads
+        self.N = window_size * window_size
+        self.dim_head = dim // self.num_heads
 
     def forward(self, x):
-        q_global = self.to_q_global(x.view(-1,
-                                           self.dim,
-                                           self.resolution,
-                                           self.resolution))
+        x = self.to_q_global(x)
+        B = x.shape[0]
+        x = x.reshape(B, 1, self.N, self.num_heads, self.dim_head).permute(0, 1, 3, 2, 4)
+        return x
+
+
+class GCViTLayer(nn.Module):
+    """
+    GCViT layer based on: "Hatamizadeh et al.,
+    Global Context Vision Transformers <https://arxiv.org/abs/2206.09959>"
+    """
+
+    def __init__(self,
+                 dim,
+                 depth,
+                 input_resolution,
+                 num_heads,
+                 window_size,
+                 downsample=True,
+                 mlp_ratio=4.,
+                 qkv_bias=True,
+                 qk_scale=None,
+                 drop=0.,
+                 attn_drop=0.,
+                 drop_path=0.,
+                 norm_layer=nn.LayerNorm,
+                 layer_scale=None):
+        """
+        Args:
+            dim: feature size dimension.
+            depth: number of layers in each stage.
+            input_resolution: input image resolution.
+            window_size: window size in each stage.
+            downsample: bool argument for down-sampling.
+            mlp_ratio: MLP ratio.
+            num_heads: number of heads in each stage.
+            qkv_bias: bool argument for query, key, value learnable bias.
+            qk_scale: bool argument to scaling query, key.
+            drop: dropout rate.
+            attn_drop: attention dropout rate.
+            drop_path: drop path rate.
+            norm_layer: normalization layer.
+            layer_scale: layer scaling coefficient.
+        """
+
+        super().__init__()
+        self.blocks = nn.ModuleList([
+            GCViTBlock(dim=dim,
+                       num_heads=num_heads,
+                       window_size=window_size,
+                       mlp_ratio=mlp_ratio,
+                       qkv_bias=qkv_bias,
+                       qk_scale=qk_scale,
+                       attention=WindowAttention if (i % 2 == 0) else WindowAttentionGlobal,
+                       drop=drop,
+                       attn_drop=attn_drop,
+                       drop_path=drop_path[i] if isinstance(drop_path, list) else drop_path,
+                       norm_layer=norm_layer,
+                       layer_scale=layer_scale,
+                       input_resolution=input_resolution)
+            for i in range(depth)])
+        self.downsample = None if not downsample else ReduceSize(dim=dim, norm_layer=norm_layer)
+        self.q_global_gen = GlobalQueryGen(dim, input_resolution, window_size, num_heads)
+
+    def forward(self, x):
+        q_global = self.q_global_gen(_to_channel_first(x))
         for blk in self.blocks:
             x = blk(x, q_global)
         if self.downsample is None:
@@ -391,6 +587,11 @@ class GCViTLayer(nn.Module):
 
 
 class GCViT(nn.Module):
+    """
+    GCViT based on: "Hatamizadeh et al.,
+    Global Context Vision Transformers <https://arxiv.org/abs/2206.09959>"
+    """
+
     def __init__(self,
                  dim,
                  depths,
@@ -408,6 +609,24 @@ class GCViT(nn.Module):
                  norm_layer=nn.LayerNorm,
                  layer_scale=None,
                  **kwargs):
+        """
+        Args:
+            dim: feature size dimension.
+            depths: number of layers in each stage.
+            window_size: window size in each stage.
+            mlp_ratio: MLP ratio.
+            num_heads: number of heads in each stage.
+            resolution: input image resolution.
+            drop_path_rate: drop path rate.
+            in_chans: number of input channels.
+            num_classes: number of classes.
+            qkv_bias: bool argument for query, key, value learnable bias.
+            qk_scale: bool argument to scaling query, key.
+            drop_rate: dropout rate.
+            attn_drop_rate: attention dropout rate.
+            norm_layer: normalization layer.
+            layer_scale: layer scaling coefficient.
+        """
         super().__init__()
 
         num_features = int(dim * 2 ** (len(depths) - 1))
@@ -457,7 +676,7 @@ class GCViT(nn.Module):
             x = level(x)
 
         x = self.norm(x)
-        x = x.permute(0, 3, 1, 2)
+        x = _to_channel_first(x)
         x = self.avgpool(x)
         x = torch.flatten(x, 1)
         return x

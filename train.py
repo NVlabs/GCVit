@@ -39,7 +39,7 @@ from timm.utils import ApexScaler, NativeScaler
 from scheduler.scheduler_factory import create_scheduler
 from models.gc_vit import *
 from tensorboard import TensorboardLogger
-import pdb
+
 try:
     from apex import amp
     from apex.parallel import DistributedDataParallel as ApexDDP
@@ -738,9 +738,6 @@ def train_one_epoch(
                 utils.dispatch_clip_grad(
                     model_parameters(model, exclude_head='agc' in args.clip_mode),
                     value=args.clip_grad, mode=args.clip_mode)
-            for name, param in model.named_parameters():
-                if param.grad is None:
-                    print(name)
             optimizer.step()
 
         if model_ema is not None:

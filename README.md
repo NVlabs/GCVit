@@ -24,7 +24,7 @@ The architecture of GC ViT is demonstrated in the following:
 1. New Pre-trained model weights with improved performance have been released. Please see below for download link. 
 2. GC ViT model has been updated with enhanced global query generator.
  
-***06/17/2022***
+***06/23/2022***
 
 1. Pre-trained model weights released. Please see below for download link. 
 

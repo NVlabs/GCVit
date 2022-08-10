@@ -57,8 +57,8 @@ operations such as computing attention masks or shifting local windows.
   </tr>
 <tr>
     <td>GC ViT-XXT</td>
-    <td>79.78</td>
-    <td>95.19</td>
+    <td>79.80</td>
+    <td>95.09</td>
     <td>224x224</td>
     <td>12</td>
     <td>2.1</td>
@@ -67,8 +67,8 @@ operations such as computing attention masks or shifting local windows.
 </tr>
 <tr>
     <td>GC ViT-XT</td>
-    <td>81.95</td>
-    <td>95.86</td>
+    <td>82.04</td>
+    <td>95.99</td>
     <td>224x224</td>
     <td>20</td>
     <td>2.6</td>
@@ -77,8 +77,8 @@ operations such as computing attention masks or shifting local windows.
 </tr>
 <tr>
     <td>GC ViT-T</td>
-    <td>83.37</td>
-    <td>96.31</td>
+    <td>83.40</td>
+    <td>96.40</td>
     <td>224x224</td>
     <td>28</td>
     <td>4.7</td>
@@ -88,8 +88,8 @@ operations such as computing attention masks or shifting local windows.
 
 <tr>
     <td>GC ViT-S</td>
-    <td>83.90</td>
-    <td>96.51</td>
+    <td>83.95</td>
+    <td>96.65</td>
     <td>224x224</td>
     <td>51</td>
     <td>8.5</td>
@@ -100,7 +100,7 @@ operations such as computing attention masks or shifting local windows.
 <tr>
     <td>GC ViT-B</td>
     <td>84.47</td>
-    <td>96.92</td>
+    <td>96.84</td>
     <td>224x224</td>
     <td>90</td>
     <td>14.8</td>

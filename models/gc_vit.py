@@ -513,7 +513,7 @@ class GlobalQueryGen(nn.Module):
         self.dim_head = dim // self.num_heads
 
     def forward(self, x):
-        x = self.to_q_global(x)
+        x = _to_channel_last(self.to_q_global(x))
         B = x.shape[0]
         x = x.reshape(B, 1, self.N, self.num_heads, self.dim_head).permute(0, 1, 3, 2, 4)
         return x

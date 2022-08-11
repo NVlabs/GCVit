@@ -8,7 +8,7 @@ Transformers](https://arxiv.org/pdf/2206.09959.pdf) \
 [Hongxu (Danny) Yin](https://scholar.princeton.edu/hongxu), [Jan Kautz](https://jankautz.com/), 
 and [Pavlo Molchanov](https://www.pmolchanov.com/).
 
-GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, the tiny, small and base variants of GC ViT with `28M`, `51M` and `90M` parameters achieve `83.37`, `83.90` and `84.47` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer by a large margin. Pre-trained GC ViT backbones in downstream tasks of object detection, instance segmentation, 
+GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, the tiny, small and base variants of GC ViT with `28M`, `51M` and `90M` parameters achieve `83.40`, `83.95` and `84.47` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer by a large margin. Pre-trained GC ViT backbones in downstream tasks of object detection, instance segmentation, 
 and semantic segmentation using MS COCO and ADE20K datasets outperform prior work consistently, sometimes by large margins.
 
 ![teaser](./assets/comp_plots.png)
@@ -19,7 +19,7 @@ The architecture of GC ViT is demonstrated in the following:
 
 ## Updates
 
-***07/26/2022***
+***08/11/2022***
 
 1. New Pre-trained model weights with improved performance have been released. Please see below for download link. 
 2. GC ViT model has been updated with enhanced global query generator.
@@ -62,8 +62,8 @@ operations such as computing attention masks or shifting local windows.
     <td>224x224</td>
     <td>12</td>
     <td>2.1</td>
-    <td><a href="https://drive.google.com/file/d/12iHMS3qDFPmgD14m4o8ii-KZF04Pr6Yv/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1jjtpQGQWFf-ZHhtYSwjZk92cd-2OaRIn/view?usp=sharing">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1-xVff6ZCEyIHwo4oCk1DqSEOsc2Pu6ju/view?usp=sharing">summary</a></td>
+    <td><a href="https://drive.google.com/file/d/1Bfe63cGurkufL0mEUL05oposybbPnAom/view?usp=sharing">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-XT</td>
@@ -72,8 +72,8 @@ operations such as computing attention masks or shifting local windows.
     <td>224x224</td>
     <td>20</td>
     <td>2.6</td>
-    <td><a href="https://drive.google.com/file/d/15dXCrkoGgY2p2n2-TTH1hGIe2oDzmMrL/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1Rul1151CpW-1p9jBUztZWf_LEnISxMzQ/view?usp=sharing">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1Ge_F6n80AiMtCHgMqdoSVm90sQ6WCGTh/view?usp=sharing">summary</a></td>
+    <td><a href="https://drive.google.com/file/d/15kt8VOXdAH_jF77g7pEPk-ZmZF13sHRd/view?usp=sharing">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-T</td>
@@ -82,8 +82,8 @@ operations such as computing attention masks or shifting local windows.
     <td>224x224</td>
     <td>28</td>
     <td>4.7</td>
-    <td><a href="https://drive.google.com/file/d/12pWeqE3sF9Zy86l8Jed_ndDs7j2v1_oB/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1J5YSjDziz3ZMVb-bB3BOdmGvjBDNFIgV/view?usp=sharing">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1ApoKxz553aZl4Yr0tIgu32qgXJiOKYiI/view?usp=sharing">summary</a></td>
+    <td><a href="https://drive.google.com/file/d/1C9lLgykooDF6CxZDFDnUqw5lEqoFgULh/view?usp=sharing">model</a></td>
 </tr>
 
 <tr>
@@ -93,8 +93,8 @@ operations such as computing attention masks or shifting local windows.
     <td>224x224</td>
     <td>51</td>
     <td>8.5</td>
-    <td><a href="https://drive.google.com/file/d/1E_7rB3R4VsvjgyiBGm4pTAHRwA4w0EZZ/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/13-mO7k5jyHayJMdEuPJZY2D94WnwT3Mx/view?usp=sharing">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1CTpcbHhNxXeIG4-cp3TWV7TqCeGmcVlg/view?usp=sharing">summary</a></td>
+    <td><a href="https://drive.google.com/file/d/1bfEJQNutyDkPHAkgYcKWhjVTT_ZnYXp4/view?usp=sharing">model</a></td>
 </tr>
 
 <tr>
@@ -104,8 +104,8 @@ operations such as computing attention masks or shifting local windows.
     <td>224x224</td>
     <td>90</td>
     <td>14.8</td>
-    <td><a href="https://drive.google.com/file/d/1gx4qMNaJl23KJ_1DYHgJnR0YaOQmVMYP/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1BcpxS2EIpnbZdbs0s6L3l7s9-HuSY_io/view?usp=sharing">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1yAJeyMf8a1M2oc3aGP8qwNBz1NTDNuGP/view?usp=sharing">summary</a></td>
+    <td><a href="https://drive.google.com/file/d/1PFugO7dqfS-eubZi-yksM_FcYvUNjXBn/view?usp=sharing">model</a></td>
 </tr>
 
 </table>

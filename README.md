@@ -177,7 +177,9 @@ python validate.py --model <model-name> --checkpoint <checkpoint-path> --data_di
 
 ## Acknowledgement
 
-This repository is built upon the [timm](https://github.com/rwightman/pytorch-image-models) library. 
+- This repository is built upon the [timm](https://github.com/rwightman/pytorch-image-models) library. 
+
+- We would like to sincerely thank the community especially Github users @rwightman ,  @shkarupa-alex,  @awsaf49 , @leondgarse , who have provided insightful feedback, which has helped us to further improve GC ViT and achieve even better benchmarks.
 
 ## Citation
 

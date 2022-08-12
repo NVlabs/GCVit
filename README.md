@@ -175,19 +175,6 @@ To evaluate a pre-trained checkpoint using ImageNet-1K validation set on a singl
 python validate.py --model <model-name> --checkpoint <checkpoint-path> --data_dir <imagenet-path> --batch-size <batch-size-per-gpu>
 ```
 
-## Acknowledgement
-
-- This repository is built upon the [timm](https://github.com/rwightman/pytorch-image-models) library. 
-
-- We would like to sincerely thank the community especially Github users @rwightman, @shkarupa-alex, @awsaf49, @leondgarse, who have provided insightful feedback, which has helped us to further improve GC ViT and achieve even better benchmarks.
-
-## Other implementations
-
-| Framework | Link |
-|:---:|:---:|
-|Tensorflow (Keras)|[tfgcvit](https://github.com/shkarupa-alex/tfgcvit)|
-| ... | |
-
 ## Citation
 
 Please consider citing GC ViT paper if it is useful for your work:
@@ -200,6 +187,29 @@ Please consider citing GC ViT paper if it is useful for your work:
   year={2022}
 }
 ```
+
+## Third-party Implementations and Resources
+
+In this section, we list third-party contributions by other users. If you would like to have your work included here, please
+raise an issue in this repository.
+
+| Name | Link | Contributor | Note
+|:---:|:---:|:---:|:---------:|
+|Repository 1|[tfgcvit](https://github.com/shkarupa-alex/tfgcvit)| @shkarupa-alex | Tensorflow 2.0 (Keras)
+|Repository 2|[gcvit-tf](https://github.com/awsaf49/gcvit-tf)| @awsaf49 | Tensorflow 2.0 (Keras)
+|Paper Explanation|[Link](https://www.kaggle.com/code/awsaf49/guie-global-context-vit-gcvit)| @awsaf49 | Annotated GC ViT
+|Colab Notebook|[Link](https://colab.research.google.com/github/awsaf49/gcvit-tf/blob/main/notebooks/GCViT_Flower_Classification.ipynb)| @awsaf49 | Flower classification
+|Kaggle Notebook|[Link](https://www.kaggle.com/code/awsaf49/flower-classification-gcvit-global-context-vit/notebook)| @awsaf49 | Flower classification
+|Live Demo|[Link](https://huggingface.co/spaces/awsaf49/gcvit-tf)| @awsaf49 | Hugging Face demo
+
+
+
+## Acknowledgement
+
+- This repository is built upon the [timm](https://github.com/rwightman/pytorch-image-models) library. 
+
+- We would like to sincerely thank the community especially Github users @rwightman, @shkarupa-alex, @awsaf49, @leondgarse, who have provided insightful feedback, which has helped us to further improve GC ViT and achieve even better benchmarks.
+
 
 ## Licenses
 

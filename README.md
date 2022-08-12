@@ -181,6 +181,13 @@ python validate.py --model <model-name> --checkpoint <checkpoint-path> --data_di
 
 - We would like to sincerely thank the community especially Github users @rwightman, @shkarupa-alex, @awsaf49, @leondgarse, who have provided insightful feedback, which has helped us to further improve GC ViT and achieve even better benchmarks.
 
+## Other implementations
+
+| Framework | Link |
+|:---:|:---:|
+|Tensorflow (Keras)|[tfgcvit](https://github.com/shkarupa-alex/tfgcvit)|
+| ... | |
+
 ## Citation
 
 Please consider citing GC ViT paper if it is useful for your work:

@@ -157,14 +157,14 @@ The `GC ViT` model can be trained from scratch on ImageNet-1K dataset by running
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node <num-of-gpus> --master_port 11223  train.py \ 
---config <config-file> --data_dir <imagenet-path> --batch-size <batch-size-per-gpu> --tag <run-tag> --model-ema
+--config <config-file> --data_dir <imagenet-path> --batch-size --amp <batch-size-per-gpu> --tag <run-tag> --model-ema
 ```
 
 To resume training from a pre-trained checkpoint:
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node <num-of-gpus> --master_port 11223  train.py \ 
---resume <checkpoint-path> --config <config-file> --data_dir <imagenet-path> --batch-size <batch-size-per-gpu> --tag <run-tag> --model-ema
+--resume <checkpoint-path> --config <config-file> --amp --data_dir <imagenet-path> --batch-size <batch-size-per-gpu> --tag <run-tag> --model-ema
 ```
 
 ### Evaluation

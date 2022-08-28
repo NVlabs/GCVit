@@ -19,6 +19,10 @@ The architecture of GC ViT is demonstrated in the following:
 
 ## Updates
 
+***08/28/2022***
+
+1. GC ViT and its pre-trained weights are now available as part of [timm](https://github.com/rwightman/pytorch-image-models) library. 
+
 ***08/11/2022***
 
 1. New Pre-trained model weights with improved performance have been released. Please see below for download link. 
@@ -195,8 +199,9 @@ raise an issue in this repository.
 
 | Name | Link | Contributor | Note
 |:---:|:---:|:---:|:---------:|
-|Repository 1|[tfgcvit](https://github.com/shkarupa-alex/tfgcvit)| @shkarupa-alex | Tensorflow 2.0 (Keras)
-|Repository 2|[gcvit-tf](https://github.com/awsaf49/gcvit-tf)| @awsaf49 | Tensorflow 2.0 (Keras)
+|PyTorch image models|[timm](https://github.com/rwightman/pytorch-image-models)| @rwightman | PyTorch
+|GC ViT TF1|[tfgcvit](https://github.com/shkarupa-alex/tfgcvit)| @shkarupa-alex | Tensorflow 2.0 (Keras)
+|GC ViT TF2|[gcvit-tf](https://github.com/awsaf49/gcvit-tf)| @awsaf49 | Tensorflow 2.0 (Keras)
 |Paper Explanation|[Link](https://www.kaggle.com/code/awsaf49/guie-global-context-vit-gcvit)| @awsaf49 | Annotated GC ViT
 |Colab Notebook|[Link](https://colab.research.google.com/github/awsaf49/gcvit-tf/blob/main/notebooks/GCViT_Flower_Classification.ipynb)| @awsaf49 | Flower classification
 |Kaggle Notebook|[Link](https://www.kaggle.com/code/awsaf49/flower-classification-gcvit-global-context-vit/notebook)| @awsaf49 | Flower classification

@@ -1,0 +1,22 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="9">
+            <item index="0" class="java.lang.String" itemvalue="odach" />
+            <item index="1" class="java.lang.String" itemvalue="vit-pytorch" />
+            <item index="2" class="java.lang.String" itemvalue="einops" />
+            <item index="3" class="java.lang.String" itemvalue="tqdm" />
+            <item index="4" class="java.lang.String" itemvalue="tensorboard" />
+            <item index="5" class="java.lang.String" itemvalue="ml-collections" />
+            <item index="6" class="java.lang.String" itemvalue="torch" />
+            <item index="7" class="java.lang.String" itemvalue="numpy" />
+            <item index="8" class="java.lang.String" itemvalue="tensorboardX" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

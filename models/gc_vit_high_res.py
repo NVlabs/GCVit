@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 from timm.models.layers import trunc_normal_, DropPath, to_2tuple
 from timm.models.registry import register_model
-import pdb
+
 
 def _to_channel_last(x):
     """

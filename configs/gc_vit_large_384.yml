@@ -1,0 +1,25 @@
+model: gc_vit_large_384
+epochs: 310
+input_size: [3, 384, 384]
+warmup_epochs: 20
+cooldown_epochs: 10
+batch_size: 32
+opt: adamw
+lr: 1e-3
+lr_ep: False
+lr_cycle_decay: 1.0
+lr_cycle_limit: 1
+lr_cycle_mul: 1.0
+min_lr: 5e-6
+warmup_lr: 1e-6
+amp: True
+sched: cosine
+weight_decay: 5e-2
+crop_pct: 0.875
+cutmix: 1.0
+clip_grad: 5.0
+clip_mode: norm
+color_jitter: 0.4
+model_ema: true
+model_ema_decay: 0.9998
+model_ema_force_cpu: false

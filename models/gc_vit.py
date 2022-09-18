@@ -480,6 +480,7 @@ class GlobalQueryGen(nn.Module):
     def __init__(self,
                  dim,
                  input_resolution,
+                 image_resolution,
                  window_size,
                  num_heads):
         """
@@ -494,32 +495,32 @@ class GlobalQueryGen(nn.Module):
         """
 
         super().__init__()
-        if input_resolution == 56:
+        if input_resolution == image_resolution//4:
             self.to_q_global = nn.Sequential(
                 FeatExtract(dim, keep_dim=False),
                 FeatExtract(dim, keep_dim=False),
                 FeatExtract(dim, keep_dim=False),
             )
 
-        elif input_resolution == 28:
+        elif input_resolution == image_resolution//8:
             self.to_q_global = nn.Sequential(
                 FeatExtract(dim, keep_dim=False),
                 FeatExtract(dim, keep_dim=False),
             )
 
-        elif input_resolution == 14:
+        elif input_resolution == image_resolution//16:
 
-            if window_size == 14:
+            if window_size == input_resolution:
                 self.to_q_global = nn.Sequential(
                     FeatExtract(dim, keep_dim=True)
                 )
 
-            elif window_size == 7:
+            else:
                 self.to_q_global = nn.Sequential(
                     FeatExtract(dim, keep_dim=False)
                 )
 
-        elif input_resolution == 7:
+        elif input_resolution == image_resolution//32:
             self.to_q_global = nn.Sequential(
                 FeatExtract(dim, keep_dim=True)
             )
@@ -546,6 +547,7 @@ class GCViTLayer(nn.Module):
                  dim,
                  depth,
                  input_resolution,
+                 image_resolution,
                  num_heads,
                  window_size,
                  downsample=True,
@@ -592,7 +594,7 @@ class GCViTLayer(nn.Module):
                        input_resolution=input_resolution)
             for i in range(depth)])
         self.downsample = None if not downsample else ReduceSize(dim=dim, norm_layer=norm_layer)
-        self.q_global_gen = GlobalQueryGen(dim, input_resolution, window_size, num_heads)
+        self.q_global_gen = GlobalQueryGen(dim, input_resolution, image_resolution, window_size, num_heads)
 
     def forward(self, x):
         q_global = self.q_global_gen(_to_channel_first(x))
@@ -665,7 +667,8 @@ class GCViT(nn.Module):
                                norm_layer=norm_layer,
                                downsample=(i < len(depths) - 1),
                                layer_scale=layer_scale,
-                               input_resolution=int(2 ** (-2 - i) * resolution))
+                               input_resolution=int(2 ** (-2 - i) * resolution),
+                               image_resolution=resolution)
             self.levels.append(level)
         self.norm = norm_layer(num_features)
         self.avgpool = nn.AdaptiveAvgPool2d(1)
@@ -770,6 +773,53 @@ def gc_vit_base(pretrained=False, **kwargs):
                   mlp_ratio=2,
                   drop_path_rate=0.5,
                   layer_scale=1e-5,
+                  **kwargs)
+    if pretrained:
+        model.load_state_dict(torch.load(pretrained))
+    return model
+
+
+@register_model
+def gc_vit_large(pretrained=False, **kwargs):
+    model = GCViT(depths=[3, 4, 19, 5],
+                  num_heads=[6, 12, 24, 48],
+                  window_size=[7, 7, 14, 7],
+                  dim=192,
+                  mlp_ratio=2,
+                  drop_path_rate=0.5,
+                  layer_scale=1e-5,
+                  **kwargs)
+    if pretrained:
+        model.load_state_dict(torch.load(pretrained))
+    return model
+
+
+@register_model
+def gc_vit_base_384(pretrained=False, **kwargs):
+    model = GCViT(depths=[3, 4, 19, 5],
+                  num_heads=[4, 8, 16, 32],
+                  window_size=[12, 12, 24, 12],
+                  dim=128,
+                  mlp_ratio=2,
+                  drop_path_rate=0.5,
+                  layer_scale=1e-5,
+                  resolution=384,
+                  **kwargs)
+    if pretrained:
+        model.load_state_dict(torch.load(pretrained))
+    return model
+
+
+@register_model
+def gc_vit_large_384(pretrained=False, **kwargs):
+    model = GCViT(depths=[3, 4, 19, 5],
+                  num_heads=[6, 12, 24, 48],
+                  window_size=[12, 12, 24, 12],
+                  dim=192,
+                  mlp_ratio=2,
+                  drop_path_rate=0.5,
+                  layer_scale=1e-5,
+                  resolution=384,
                   **kwargs)
     if pretrained:
         model.load_state_dict(torch.load(pretrained))

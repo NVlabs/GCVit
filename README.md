@@ -19,6 +19,11 @@ The architecture of GC ViT is demonstrated in the following:
 
 ## Updates
 
+***11/15/2022***
+
+1. Pre-trained weights for GC ViT Large model are released. Please see below for download link.  
+
+
 ***08/28/2022***
 
 1. GC ViT and its pre-trained weights are now available as part of [timm](https://github.com/rwightman/pytorch-image-models) library. 
@@ -110,6 +115,17 @@ operations such as computing attention masks or shifting local windows.
     <td>14.8</td>
     <td><a href="https://drive.google.com/file/d/1yAJeyMf8a1M2oc3aGP8qwNBz1NTDNuGP/view?usp=sharing">summary</a></td>
     <td><a href="https://drive.google.com/file/d/1PFugO7dqfS-eubZi-yksM_FcYvUNjXBn/view?usp=sharing">model</a></td>
+</tr>
+
+<tr>
+    <td>GC ViT-L</td>
+    <td>84.63</td>
+    <td>96.84</td>
+    <td>224x224</td>
+    <td>201</td>
+    <td>32.6</td>
+    <td><a href="https://drive.google.com/file/d/1PRy1E1yTXL4cBxUbsIXnA5lOy3Yqp-Ja/view?usp=share_link">summary</a></td>
+    <td><a href="https://drive.google.com/file/d/1XDvFQrCkK-6QIpdLU1QrXWzjwnzNcH3E/view?usp=sharing">model</a></td>
 </tr>
 
 </table>

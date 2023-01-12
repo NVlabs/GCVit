@@ -4,11 +4,11 @@ This repository is the official PyTorch implementation of **Global Context Visio
  \
 [Global Context Vision
 Transformers](https://arxiv.org/pdf/2206.09959.pdf) \
-[Ali Hatamizadeh](http://web.cs.ucla.edu/~ahatamiz),
+[Ali Hatamizadeh](https://research.nvidia.com/person/ali-hatamizadeh),
 [Hongxu (Danny) Yin](https://scholar.princeton.edu/hongxu), [Jan Kautz](https://jankautz.com/), 
 and [Pavlo Molchanov](https://www.pmolchanov.com/).
 
-GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, the tiny, small and base variants of GC ViT with `28M`, `51M` and `90M` parameters achieve `83.40`, `83.95` and `84.47` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer by a large margin. Pre-trained GC ViT backbones in downstream tasks of object detection, instance segmentation, 
+GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, the tiny, small, base and large variants of GC ViT with `28M`, `51M`, `90M` and `201M` parameters achieve `83.4`, `83.9`, `84.5` and `84.8` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer by a large margin. Pre-trained GC ViT backbones in downstream tasks of object detection, instance segmentation, 
 and semantic segmentation using MS COCO and ADE20K datasets outperform prior work consistently, sometimes by large margins.
 
 ![teaser](./assets/comp_plots.png)
@@ -18,6 +18,12 @@ The architecture of GC ViT is demonstrated in the following:
 ![teaser](./assets/gc_vit.png)
 
 ## Updates
+
+***01/12/2023***
+
+1. Updated pre-trained weights for GC ViT Large model. Please see below for download link.
+
+2. ImageNet-v2 benchmarks released for all GC ViT models.
 
 ***11/15/2022***
 
@@ -49,7 +55,7 @@ operations such as computing attention masks or shifting local windows.
 
 ![teaser](./assets/attention.png)
 
-## Results on ImageNet
+## ImageNet Benchmarks
 
 **ImageNet-1K Pretrained Models**
 
@@ -66,8 +72,8 @@ operations such as computing attention masks or shifting local windows.
   </tr>
 <tr>
     <td>GC ViT-XXT</td>
-    <td>79.80</td>
-    <td>95.09</td>
+    <td>79.8</td>
+    <td>95.1</td>
     <td>224x224</td>
     <td>12</td>
     <td>2.1</td>
@@ -76,8 +82,8 @@ operations such as computing attention masks or shifting local windows.
 </tr>
 <tr>
     <td>GC ViT-XT</td>
-    <td>82.04</td>
-    <td>95.99</td>
+    <td>82.0</td>
+    <td>96.0</td>
     <td>224x224</td>
     <td>20</td>
     <td>2.6</td>
@@ -86,8 +92,8 @@ operations such as computing attention masks or shifting local windows.
 </tr>
 <tr>
     <td>GC ViT-T</td>
-    <td>83.40</td>
-    <td>96.40</td>
+    <td>83.4</td>
+    <td>96.4</td>
     <td>224x224</td>
     <td>28</td>
     <td>4.7</td>
@@ -97,8 +103,8 @@ operations such as computing attention masks or shifting local windows.
 
 <tr>
     <td>GC ViT-S</td>
-    <td>83.95</td>
-    <td>96.65</td>
+    <td>83.9</td>
+    <td>96.6</td>
     <td>224x224</td>
     <td>51</td>
     <td>8.5</td>
@@ -108,8 +114,8 @@ operations such as computing attention masks or shifting local windows.
 
 <tr>
     <td>GC ViT-B</td>
-    <td>84.47</td>
-    <td>96.84</td>
+    <td>84.5</td>
+    <td>96.8</td>
     <td>224x224</td>
     <td>90</td>
     <td>14.8</td>
@@ -119,16 +125,63 @@ operations such as computing attention masks or shifting local windows.
 
 <tr>
     <td>GC ViT-L</td>
-    <td>84.63</td>
-    <td>96.84</td>
+    <td>84.8</td>
+    <td>97.1</td>
     <td>224x224</td>
     <td>201</td>
     <td>32.6</td>
-    <td><a href="https://drive.google.com/file/d/1PRy1E1yTXL4cBxUbsIXnA5lOy3Yqp-Ja/view?usp=share_link">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1XDvFQrCkK-6QIpdLU1QrXWzjwnzNcH3E/view?usp=sharing">model</a></td>
+    <td><a href="https://drive.google.com/file/d/18F1yt-qLw9dG_hoLXsLFEjgtGzF3-Pzv/view?usp=share_link">summary</a></td>
+    <td><a href="https://drive.google.com/file/d/1zPOHZYdSyak03X9mfX_4QV_wYR4cspOH/view?usp=sharing">model</a></td>
 </tr>
 
 </table>
+
+
+## ImageNet-v2 Benchmarks
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Acc@1-ImageNet-v2</th>
+    <th>Acc@1-ImageNet1K</th>
+    <th>Resolution</th>
+  </tr>
+<tr>
+    <td>GC ViT-XXT</td>
+    <td>69.3</td>
+    <td>79.8</td>
+    <td>224x224</td>
+</tr>
+<tr>
+    <td>GC ViT-XT</td>
+    <td>71.3</td>
+    <td>82.0</td>
+    <td>224x224</td>
+</tr>
+<tr>
+    <td>GC ViT-T</td>
+    <td>73.1</td>
+    <td>83.4</td>
+    <td>224x224</td>
+</tr>
+<tr>
+    <td>GC ViT-S</td>
+    <td>73.8</td>
+    <td>83.9</td>
+    <td>224x224</td>
+</tr>
+<tr>
+    <td>GC ViT-B</td>
+    <td>74.4</td>
+    <td>84.5</td>
+    <td>224x224</td>
+</tr>
+    <td>GC ViT-L</td>
+    <td>74.9</td>
+    <td>84.8</td>
+    <td>224x224</td>
+</table>
+
 
 ## Installation
 
@@ -242,6 +295,6 @@ This work is made available under the Nvidia Source Code License-NC. Click [here
 
 The pre-trained models are shared under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
-For license information regarding the timm repository, please refer to the [official website](https://github.com/rwightman/pytorch-image-models).
+For license information regarding the timm repository, please refer to its [official website](https://github.com/rwightman/pytorch-image-models).
 
-For license information regarding the ImageNet dataset, please refer to the [official website](https://www.image-net.org/). 
+For license information regarding the ImageNet dataset, please refer to its [official website](https://www.image-net.org/). 

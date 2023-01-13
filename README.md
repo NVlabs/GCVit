@@ -143,7 +143,7 @@ operations such as computing attention masks or shifting local windows.
   <tr>
     <th>Name</th>
     <th>Acc@1-ImageNet-v2</th>
-    <th>Acc@1-ImageNet1K</th>
+    <th>Acc@1-ImageNet-1K</th>
     <th>Resolution</th>
   </tr>
 <tr>

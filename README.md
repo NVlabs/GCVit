@@ -83,7 +83,7 @@ operations such as computing attention masks or shifting local windows.
     <td>32.6</td>
 </tr>
 
-
+</table>
 ## Installation
 
 This repository is compatible with NVIDIA PyTorch docker `nvcr>=21.06` which can be obtained in this 

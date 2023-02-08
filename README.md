@@ -5,48 +5,20 @@ This repository is the official PyTorch implementation of **Global Context Visio
 [Global Context Vision
 Transformers](https://arxiv.org/pdf/2206.09959.pdf) \
 [Ali Hatamizadeh](https://research.nvidia.com/person/ali-hatamizadeh),
-[Hongxu (Danny) Yin](https://scholar.princeton.edu/hongxu), [Jan Kautz](https://jankautz.com/), 
+[Hongxu (Danny) Yin](https://scholar.princeton.edu/hongxu),
+[Greg Heinrich](https://developer.nvidia.com/blog/author/gheinrich/),
+[Jan Kautz](https://jankautz.com/), 
 and [Pavlo Molchanov](https://www.pmolchanov.com/).
 
-GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, the tiny, small, base and large variants of GC ViT with `28M`, `51M`, `90M` and `201M` parameters achieve `83.4`, `83.9`, `84.5` and `84.8` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer by a large margin. Pre-trained GC ViT backbones in downstream tasks of object detection, instance segmentation, 
+GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, GC ViT variants with `51M`, `90M` and `201M` parameters achieve `84.3`, `84.9` and `85.6` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer by a large margin. Pre-trained GC ViT backbones in downstream tasks of object detection, instance segmentation, 
 and semantic segmentation using MS COCO and ADE20K datasets outperform prior work consistently, sometimes by large margins.
 
-![teaser](./assets/comp_plots.png)
+![teaser](./assets/comp_plots2.png)
 
 The architecture of GC ViT is demonstrated in the following:
 
 ![teaser](./assets/gc_vit.png)
 
-## Updates
-
-***01/12/2023***
-
-1. Updated pre-trained weights for GC ViT Large model. Please see below for download link.
-
-2. ImageNet-v2 benchmarks released for all GC ViT models.
-
-***11/15/2022***
-
-1. Pre-trained weights for GC ViT Large model are released. Please see below for download link.  
-
-
-***08/28/2022***
-
-1. GC ViT and its pre-trained weights are now available as part of [timm](https://github.com/rwightman/pytorch-image-models) library. 
-
-***08/11/2022***
-
-1. New Pre-trained model weights with improved performance have been released. Please see below for download link. 
-2. GC ViT model has been updated with enhanced global query generator.
- 
-***06/23/2022***
-
-1. Pre-trained model weights released. Please see below for download link. 
-
-***06/17/2022***
-
-1. GC ViT model, training and validation scripts released for ImageNet-1K classification.
-2. Pre-trained model checkpoints will be released soon. 
 
 ## Introduction
 
@@ -57,130 +29,59 @@ operations such as computing attention masks or shifting local windows.
 
 ## ImageNet Benchmarks
 
+
 **ImageNet-1K Pretrained Models**
 
 <table>
   <tr>
     <th>Name</th>
     <th>Acc@1</th>
-    <th>Acc@5</th>
-    <th>Resolution</th>
     <th>#Params</th>
     <th>FLOPs</th>
-    <th>Summary</th>
-    <th>Download </th>
   </tr>
-<tr>
-    <td>GC ViT-XXT</td>
-    <td>79.8</td>
-    <td>95.1</td>
-    <td>224x224</td>
-    <td>12</td>
-    <td>2.1</td>
-    <td><a href="https://drive.google.com/file/d/1-xVff6ZCEyIHwo4oCk1DqSEOsc2Pu6ju/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1Bfe63cGurkufL0mEUL05oposybbPnAom/view?usp=sharing">model</a></td>
-</tr>
 <tr>
     <td>GC ViT-XT</td>
     <td>82.0</td>
-    <td>96.0</td>
-    <td>224x224</td>
     <td>20</td>
     <td>2.6</td>
-    <td><a href="https://drive.google.com/file/d/1Ge_F6n80AiMtCHgMqdoSVm90sQ6WCGTh/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/15kt8VOXdAH_jF77g7pEPk-ZmZF13sHRd/view?usp=sharing">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-T</td>
     <td>83.4</td>
-    <td>96.4</td>
-    <td>224x224</td>
     <td>28</td>
     <td>4.7</td>
-    <td><a href="https://drive.google.com/file/d/1ApoKxz553aZl4Yr0tIgu32qgXJiOKYiI/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1C9lLgykooDF6CxZDFDnUqw5lEqoFgULh/view?usp=sharing">model</a></td>
 </tr>
-
+<tr>
+    <td>GC ViT-T2</td>
+    <td>83.7</td>
+    <td>34</td>
+    <td>5.5</td>
+</tr>
 <tr>
     <td>GC ViT-S</td>
-    <td>83.9</td>
-    <td>96.6</td>
-    <td>224x224</td>
+    <td>84.3</td>
     <td>51</td>
     <td>8.5</td>
-    <td><a href="https://drive.google.com/file/d/1CTpcbHhNxXeIG4-cp3TWV7TqCeGmcVlg/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1bfEJQNutyDkPHAkgYcKWhjVTT_ZnYXp4/view?usp=sharing">model</a></td>
 </tr>
-
+<tr>
+    <td>GC ViT-S2</td>
+    <td>84.7</td>
+    <td>68</td>
+    <td>10.7</td>
+</tr>
 <tr>
     <td>GC ViT-B</td>
-    <td>84.5</td>
-    <td>96.8</td>
-    <td>224x224</td>
+    <td>84.9</td>
     <td>90</td>
     <td>14.8</td>
-    <td><a href="https://drive.google.com/file/d/1yAJeyMf8a1M2oc3aGP8qwNBz1NTDNuGP/view?usp=sharing">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1PFugO7dqfS-eubZi-yksM_FcYvUNjXBn/view?usp=sharing">model</a></td>
 </tr>
 
 <tr>
     <td>GC ViT-L</td>
-    <td>84.8</td>
-    <td>97.1</td>
-    <td>224x224</td>
+    <td>85.6</td>
     <td>201</td>
     <td>32.6</td>
-    <td><a href="https://drive.google.com/file/d/18F1yt-qLw9dG_hoLXsLFEjgtGzF3-Pzv/view?usp=share_link">summary</a></td>
-    <td><a href="https://drive.google.com/file/d/1zPOHZYdSyak03X9mfX_4QV_wYR4cspOH/view?usp=sharing">model</a></td>
 </tr>
-
-</table>
-
-
-## ImageNet-v2 Benchmarks
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Acc@1-ImageNet-v2</th>
-    <th>Acc@1-ImageNet-1K</th>
-    <th>Resolution</th>
-  </tr>
-<tr>
-    <td>GC ViT-XXT</td>
-    <td>69.3</td>
-    <td>79.8</td>
-    <td>224x224</td>
-</tr>
-<tr>
-    <td>GC ViT-XT</td>
-    <td>71.3</td>
-    <td>82.0</td>
-    <td>224x224</td>
-</tr>
-<tr>
-    <td>GC ViT-T</td>
-    <td>73.1</td>
-    <td>83.4</td>
-    <td>224x224</td>
-</tr>
-<tr>
-    <td>GC ViT-S</td>
-    <td>73.8</td>
-    <td>83.9</td>
-    <td>224x224</td>
-</tr>
-<tr>
-    <td>GC ViT-B</td>
-    <td>74.4</td>
-    <td>84.5</td>
-    <td>224x224</td>
-</tr>
-    <td>GC ViT-L</td>
-    <td>74.9</td>
-    <td>84.8</td>
-    <td>224x224</td>
-</table>
 
 
 ## Installation

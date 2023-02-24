@@ -1,6 +1,6 @@
 # Global Context Vision Transformer (GC ViT)
 
-This repository is the official PyTorch implementation of **Global Context Vision Transformers**. \
+This repository presents the official PyTorch implementation of **Global Context Vision Transformers**. \
  \
 [Global Context Vision
 Transformers](https://arxiv.org/pdf/2206.09959.pdf) \

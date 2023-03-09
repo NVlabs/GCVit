@@ -804,7 +804,7 @@ def gc_vit_large(pretrained=False, **kwargs):
                   mlp_ratio=2,
                   drop_path_rate=drop_path_rate,
                   layer_scale=1e-5,
-                  grad_ckpt=True,
+                  grad_ckpt=False,
                   **kwargs)
     if pretrained:
         model.load_state_dict(torch.load(pretrained))

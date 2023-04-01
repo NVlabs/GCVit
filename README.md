@@ -169,7 +169,7 @@ Please consider citing GC ViT paper if it is useful for your work:
 In this section, we list third-party contributions by other users. If you would like to have your work included here, please
 raise an issue in this repository.
 
-| Name | Link | Contributor | Note
+| Name | Link | Contributor | Framework
 |:---:|:---:|:---:|:---------:|
 |timm|[Link](https://github.com/rwightman/pytorch-image-models)| @rwightman | PyTorch
 |tfgcvit|[Link](https://github.com/shkarupa-alex/tfgcvit)| @shkarupa-alex | Tensorflow 2.0 (Keras)

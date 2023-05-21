@@ -111,6 +111,7 @@ operations such as computing attention masks or shifting local windows.
 <table>
   <tr>
     <th>Model Variant</th>
+    <th>Resolution</th>
     <th>Acc@1</th>
     <th>#Params</th>
     <th>FLOPs</th>
@@ -118,6 +119,7 @@ operations such as computing attention masks or shifting local windows.
   </tr>
 <tr>
     <td>GC ViT-L</td>
+    <th>224x224</th>
     <td>86.6</td>
     <td>201</td>
     <td>32.6</td>
@@ -125,6 +127,7 @@ operations such as computing attention masks or shifting local windows.
 </tr>
 <tr>
     <td>GC ViT-L</td>
+    <th>384x384</th>
     <td>87.4</td>
     <td>201</td>
     <td>120.4</td>

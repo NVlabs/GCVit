@@ -47,49 +47,49 @@ operations such as computing attention masks or shifting local windows.
   </tr>
 <tr>
     <td>GC ViT-XXT</td>
-    <td>79.9</td>
+    <th>79.9</th>
     <td>12</td>
     <td>2.1</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1apSIWQCa5VhWLJws8ugMTuyKzyayw4Eh">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-XT</td>
-    <td>82.0</td>
+    <th>82.0</th>
     <td>20</td>
     <td>2.6</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1OgSbX73AXmE0beStoJf2Jtda1yin9t9m">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-T</td>
-    <td>83.5</td>
+    <th>83.5</th>
     <td>28</td>
     <td>4.7</td>
     <td><a href="https://drive.google.com/uc?export=download&id=11M6AsxKLhfOpD12Nm_c7lOvIIAn9cljy">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-T2</td>
-    <td>83.7</td>
+    <th>83.7</th>
     <td>34</td>
     <td>5.5</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1cTD8VemWFiwAx0FB9cRMT-P4vRuylvmQ">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-S</td>
-    <td>84.3</td>
+    <th>84.3</th>
     <td>51</td>
     <td>8.5</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1Nn6ABKmYjylyWC0I41Q3oExrn4fTzO9Y">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-S2</td>
-    <td>84.8</td>
+    <th>84.8</th>
     <td>68</td>
     <td>10.7</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1E5TtYpTqILznjBLLBTlO5CGq343RbEan">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-B</td>
-    <td>85.0</td>
+    <th>85.0</th>
     <td>90</td>
     <td>14.8</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1PF7qfxKLcv_ASOMetDP75n8lC50gaqyH">model</a></td>
@@ -97,7 +97,7 @@ operations such as computing attention masks or shifting local windows.
 
 <tr>
     <td>GC ViT-L</td>
-    <td>85.7</td>
+    <th>85.7</th>
     <td>201</td>
     <td>32.6</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1Lkz1nWKTwCCUR7yQJM6zu_xwN1TR0mxS">model</a></td>
@@ -119,16 +119,16 @@ operations such as computing attention masks or shifting local windows.
   </tr>
 <tr>
     <td>GC ViT-L</td>
-    <th>224x224</th>
-    <td>86.6</td>
+    <td>224 x 224</td>
+    <th>86.6</th>
     <td>201</td>
     <td>32.6</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1maGDr6mJkLyRTUkspMzCgSlhDzNRFGEf">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-L</td>
-    <th>384x384</th>
-    <td>87.4</td>
+    <td>384 x 384</td>
+    <th>87.4</th>
     <td>201</td>
     <td>120.4</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1P-IEhvQbJ3FjnunVkM1Z9dEpKw-tsuWv">model</a></td>

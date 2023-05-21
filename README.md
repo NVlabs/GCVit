@@ -1,6 +1,6 @@
 # Global Context Vision Transformer (GC ViT)
 
-This repository presents the official PyTorch implementation of **Global Context Vision Transformers**. \
+This repository presents the official PyTorch implementation of **Global Context Vision Transformers** (ICML2023) \
  \
 [Global Context Vision
 Transformers](https://arxiv.org/pdf/2206.09959.pdf) \
@@ -10,14 +10,19 @@ Transformers](https://arxiv.org/pdf/2206.09959.pdf) \
 [Jan Kautz](https://jankautz.com/), 
 and [Pavlo Molchanov](https://www.pmolchanov.com/).
 
-GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, GC ViT variants with `51M`, `90M` and `201M` parameters achieve `84.3`, `84.9` and `85.6` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer by a large margin. Pre-trained GC ViT backbones in downstream tasks of object detection, instance segmentation, 
-and semantic segmentation using MS COCO and ADE20K datasets outperform prior work consistently, sometimes by large margins.
+GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, GC ViT variants with `51M`, `90M` and `201M` parameters achieve `84.3`, `85.9` and `85.7` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer by a large margin. Pre-trained GC ViT backbones in downstream tasks of object detection, instance segmentation, and semantic segmentation using MS COCO and ADE20K datasets outperform prior work consistently, sometimes by large margins.
 
-![teaser](./assets/comp_plots2.png)
+<!-- ![teaser](./assets/comp_plots2.png) -->
 
 The architecture of GC ViT is demonstrated in the following:
 
 ![teaser](./assets/gc_vit.png)
+
+## 💥 News 💥
+
+- **[05.21.2023]** We have released ImageNet-21K fine-tuned GC ViT model weights for 224x224 and 384x384.
+- **[05.21.2023]** 🔥🔥 We have released new ImageNet-1K GC ViT model weights with substantially **better performance** !.
+- **[04.24.2023]** 🔥🔥🔥 GC ViT has been accepted to **ICML 2023** !.
 
 
 ## Introduction
@@ -34,62 +39,102 @@ operations such as computing attention masks or shifting local windows.
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Model Variant</th>
     <th>Acc@1</th>
     <th>#Params</th>
     <th>FLOPs</th>
+    <th>Download</th>
   </tr>
+<tr>
+    <td>GC ViT-XXT</td>
+    <td>79.9</td>
+    <td>12</td>
+    <td>2.1</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1apSIWQCa5VhWLJws8ugMTuyKzyayw4Eh">model</a></td>
+</tr>
 <tr>
     <td>GC ViT-XT</td>
     <td>82.0</td>
     <td>20</td>
     <td>2.6</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1OgSbX73AXmE0beStoJf2Jtda1yin9t9m">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-T</td>
-    <td>83.4</td>
+    <td>83.5</td>
     <td>28</td>
     <td>4.7</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=11M6AsxKLhfOpD12Nm_c7lOvIIAn9cljy">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-T2</td>
     <td>83.7</td>
     <td>34</td>
     <td>5.5</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1cTD8VemWFiwAx0FB9cRMT-P4vRuylvmQ">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-S</td>
     <td>84.3</td>
     <td>51</td>
     <td>8.5</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1Nn6ABKmYjylyWC0I41Q3oExrn4fTzO9Y">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-S2</td>
-    <td>84.7</td>
+    <td>84.8</td>
     <td>68</td>
     <td>10.7</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1E5TtYpTqILznjBLLBTlO5CGq343RbEan">model</a></td>
 </tr>
 <tr>
     <td>GC ViT-B</td>
-    <td>84.9</td>
+    <td>85.0</td>
     <td>90</td>
     <td>14.8</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1PF7qfxKLcv_ASOMetDP75n8lC50gaqyH">model</a></td>
 </tr>
 
 <tr>
     <td>GC ViT-L</td>
-    <td>85.6</td>
+    <td>85.7</td>
     <td>201</td>
     <td>32.6</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1Lkz1nWKTwCCUR7yQJM6zu_xwN1TR0mxS">model</a></td>
+</tr>
+
+</table>
+
+
+**ImageNet-21K Pretrained Models**
+
+<table>
+  <tr>
+    <th>Model Variant</th>
+    <th>Acc@1</th>
+    <th>#Params</th>
+    <th>FLOPs</th>
+    <th>Download</th>
+  </tr>
+<tr>
+    <td>GC ViT-L</td>
+    <td>86.6</td>
+    <td>201</td>
+    <td>32.6</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1maGDr6mJkLyRTUkspMzCgSlhDzNRFGEf">model</a></td>
+</tr>
+<tr>
+    <td>GC ViT-L</td>
+    <td>87.4</td>
+    <td>201</td>
+    <td>120.4</td>
+    <td><a href="https://drive.google.com/uc?export=download&id=1P-IEhvQbJ3FjnunVkM1Z9dEpKw-tsuWv">model</a></td>
 </tr>
 
 </table>
 
 
 ## Installation
-
-This repository is compatible with NVIDIA PyTorch docker `nvcr>=21.06` which can be obtained in this 
-[link](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch).
 
 The dependencies can be installed by running:
 

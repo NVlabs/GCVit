@@ -1,4 +1,4 @@
-model: gc_vit_large
+model: gc_vit_small2
 epochs: 310
 warmup_epochs: 20
 cooldown_epochs: 10

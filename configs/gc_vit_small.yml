@@ -4,7 +4,7 @@ warmup_epochs: 20
 cooldown_epochs: 10
 batch_size: 32
 opt: adamw
-lr: 0.002
+lr: 0.005
 lr_ep: False
 lr_cycle_decay: 1.0
 lr_cycle_limit: 1

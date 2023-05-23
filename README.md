@@ -113,8 +113,8 @@ operations such as computing attention masks or shifting local windows.
     <th>Model Variant</th>
     <th>Resolution</th>
     <th>Acc@1</th>
-    <th>#Params</th>
-    <th>FLOPs</th>
+    <th>#Params(M)</th>
+    <th>FLOPs(G)</th>
     <th>Download</th>
   </tr>
 <tr>

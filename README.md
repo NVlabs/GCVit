@@ -204,11 +204,11 @@ python validate.py --model <model-name> --checkpoint <checkpoint-path> --data_di
 Please consider citing GC ViT paper if it is useful for your work:
 
 ```
-@article{hatamizadeh2022global,
+@article{hatamizadeh2023global,
   title={Global Context Vision Transformers},
-  author={Hatamizadeh, Ali and Yin, Hongxu and Kautz, Jan and Molchanov, Pavlo},
+  author={Hatamizadeh, Ali and Yin, Hongxu and Heinrich, Greg and Kautz, Jan and Molchanov, Pavlo},
   journal={arXiv preprint arXiv:2206.09959},
-  year={2022}
+  year={2023}
 }
 ```
 

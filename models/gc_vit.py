@@ -112,7 +112,7 @@ def window_partition(x, window_size, h_w, w_w):
     return windows
 
 
-def window_reverse(windows, window_size, H, W, h_w, w_w):
+def window_reverse(windows, window_size, H, W, h_w, w_w, B):
     """
     Args:
         windows: local window features (num_windows*B, window_size, window_size, C)
@@ -123,7 +123,7 @@ def window_reverse(windows, window_size, H, W, h_w, w_w):
     Returns:
         x: (B, H, W, C)
     """
-    B = int(windows.shape[0] / (H * W / window_size / window_size))
+    # B = int(windows.shape[0] // (H * W // window_size // window_size))
     x = windows.view(B, h_w, w_w, window_size, window_size, -1)
     x = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(B, H, W, -1)
     return x
@@ -525,7 +525,7 @@ class GCViTBlock(nn.Module):
         x_windows = window_partition(x, self.window_size, h_w, w_w)
         x_windows = x_windows.view(-1, self.window_size * self.window_size, C)
         attn_windows = self.attn(x_windows, q_global)
-        x = window_reverse(attn_windows, self.window_size, H, W, h_w, w_w)
+        x = window_reverse(attn_windows, self.window_size, H, W, h_w, w_w, B)
         x = shortcut + self.drop_path(self.gamma1 * x)
         x = x + self.drop_path(self.gamma2 * self.mlp(self.norm2(x)))
         return x

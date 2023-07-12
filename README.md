@@ -204,11 +204,13 @@ python validate.py --model <model-name> --checkpoint <checkpoint-path> --data_di
 Please consider citing GC ViT paper if it is useful for your work:
 
 ```
-@article{hatamizadeh2023global,
-  title={Global Context Vision Transformers},
+@inproceedings{hatamizadeh2023global,
+  title={Global context vision transformers},
   author={Hatamizadeh, Ali and Yin, Hongxu and Heinrich, Greg and Kautz, Jan and Molchanov, Pavlo},
-  journal={arXiv preprint arXiv:2206.09959},
-  year={2023}
+  booktitle={International Conference on Machine Learning},
+  pages={12633--12646},
+  year={2023},
+  organization={PMLR}
 }
 ```
 
@@ -238,14 +240,6 @@ We list additional GC ViT resources such as notebooks, demos, paper explanations
 |Live Demo|[Link](https://huggingface.co/spaces/awsaf49/gcvit-tf)| @awsaf49 | Hugging Face demo
 
 
-
-## Acknowledgement
-
-- This repository is built upon the [timm](https://github.com/rwightman/pytorch-image-models) library. 
-
-- We would like to sincerely thank the community especially Github users @rwightman, @shkarupa-alex, @awsaf49, @leondgarse, who have provided insightful feedback, which has helped us to further improve GC ViT and achieve even better benchmarks.
-
-
 ## Licenses
 
 Copyright © 2023, NVIDIA Corporation. All rights reserved.
@@ -254,6 +248,14 @@ This work is made available under the Nvidia Source Code License-NC. Click [here
 
 The pre-trained models are shared under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
-For license information regarding the timm repository, please refer to its [official website](https://github.com/rwightman/pytorch-image-models).
+For license information regarding the timm, please refer to its [repository](https://github.com/rwightman/pytorch-image-models).
 
-For license information regarding the ImageNet dataset, please refer to its [official website](https://www.image-net.org/). 
+For license information regarding the ImageNet dataset, please refer to the ImageNet [official website](https://www.image-net.org/). 
+
+
+
+## Acknowledgement
+
+- This repository is built upon the [timm](https://github.com/rwightman/pytorch-image-models) library. 
+
+- We would like to sincerely thank the community especially Github users @rwightman, @shkarupa-alex, @awsaf49, @leondgarse, who have provided insightful feedback, which has helped us to further improve GC ViT and achieve even better benchmarks.

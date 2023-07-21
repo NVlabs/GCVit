@@ -1,0 +1,4 @@
+timm==0.5.4
+pyyaml==6.0
+mmcv-full==1.4.8
+mmdet==2.19.0

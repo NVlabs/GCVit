@@ -32,7 +32,8 @@ The architecture of GC ViT is demonstrated in the following:
 **GC ViT** leverages global context self-attention modules, joint with local self-attention, to effectively yet efficiently model both long and short-range spatial interactions, without the need for expensive 
 operations such as computing attention masks or shifting local windows.
 
-![teaser](./assets/attention.png)
+![attention](https://github.com/NVlabs/GCVit/assets/26806394/da64f22a-e7af-4577-8884-b08ba4e24e49)
+
 
 ## ImageNet Benchmarks
 

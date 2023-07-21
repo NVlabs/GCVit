@@ -12,11 +12,13 @@ and [Pavlo Molchanov](https://www.pmolchanov.com/).
 
 GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, GC ViT variants with `51M`, `90M` and `201M` parameters achieve `84.3`, `85.9` and `85.7` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer.
 
-<!-- ![teaser](./assets/comp_plots2.png) -->
+![comp_plots2](https://github.com/NVlabs/GCVit/assets/26806394/d1820d6d-3aef-470e-a1d3-af370f1c1f77)
+
 
 The architecture of GC ViT is demonstrated in the following:
 
-![teaser](./assets/gc_vit.png)
+![gc_vit](https://github.com/NVlabs/GCVit/assets/26806394/86ca853e-56bc-4907-b3e3-0c4611ef9073)
+
 
 ## 💥 News 💥
 - **[07.21.2023]** 🔥 We have released the object detection/instance segmentation [code](./detection/README.md) ! 

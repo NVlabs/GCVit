@@ -19,7 +19,7 @@ The architecture of GC ViT is demonstrated in the following:
 ![teaser](./assets/gc_vit.png)
 
 ## 💥 News 💥
-- **[07.21.2023]** 🔥 We have released the object detection/instance segmentation ![code](./detection/README.md) ! 
+- **[07.21.2023]** 🔥 We have released the object detection/instance segmentation [code](./detection/README.md) ! 
 - **[05.21.2023]** 🔥 We have released ImageNet-21K fine-tuned GC ViT model weights for 224x224 and 384x384.
 - **[05.21.2023]** 🔥🔥 We have released new ImageNet-1K GC ViT model weights with **better performance** !
 - **[04.24.2023]** 🔥🔥🔥 GC ViT has been accepted to **ICML 2023** !

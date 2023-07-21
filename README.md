@@ -12,7 +12,10 @@ and [Pavlo Molchanov](https://www.pmolchanov.com/).
 
 GC ViT  achieves state-of-the-art results across image classification, object detection and semantic segmentation tasks. On ImageNet-1K dataset for classification, GC ViT variants with `51M`, `90M` and `201M` parameters achieve `84.3`, `85.9` and `85.7` Top-1 accuracy, respectively, surpassing comparably-sized prior art such as CNN-based ConvNeXt and ViT-based Swin Transformer.
 
-![comp_plots2](https://github.com/NVlabs/GCVit/assets/26806394/d1820d6d-3aef-470e-a1d3-af370f1c1f77)
+<p align="center">
+<img src="https://github.com/NVlabs/GCVit/assets/26806394/d1820d6d-3aef-470e-a1d3-af370f1c1f77" width=63% height=63% 
+class="center">
+</p>
 
 
 The architecture of GC ViT is demonstrated in the following:
@@ -32,7 +35,11 @@ The architecture of GC ViT is demonstrated in the following:
 **GC ViT** leverages global context self-attention modules, joint with local self-attention, to effectively yet efficiently model both long and short-range spatial interactions, without the need for expensive 
 operations such as computing attention masks or shifting local windows.
 
-![attention](https://github.com/NVlabs/GCVit/assets/26806394/da64f22a-e7af-4577-8884-b08ba4e24e49)
+
+<p align="center">
+<img src="https://github.com/NVlabs/GCVit/assets/26806394/da64f22a-e7af-4577-8884-b08ba4e24e49" width=72% height=72% 
+class="center">
+</p>
 
 
 ## ImageNet Benchmarks

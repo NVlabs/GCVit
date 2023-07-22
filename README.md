@@ -24,6 +24,8 @@ The architecture of GC ViT is demonstrated in the following:
 
 
 ## 💥 News 💥
+- **[07.22.2023]** 🔥🔥 We have released pretrained 21K GC ViT-L checkpoint for 512 x 512 resolution ! 
+- **[07.22.2023]** Pretrained checkpoints are now available in official [NVIDIA GCViT HuggingFace](https://huggingface.co/nvidia/GCViT) page !
 - **[07.21.2023]** 🔥 We have released the object detection/instance segmentation [code](./detection/README.md) ! 
 - **[05.21.2023]** 🔥 We have released ImageNet-21K fine-tuned GC ViT model weights for 224x224 and 384x384.
 - **[05.21.2023]** 🔥🔥 We have released new ImageNet-1K GC ViT model weights with **better performance** !
@@ -142,6 +144,14 @@ class="center">
     <td>201</td>
     <td>120.4</td>
     <td><a href="https://drive.google.com/uc?export=download&id=1P-IEhvQbJ3FjnunVkM1Z9dEpKw-tsuWv">model</a></td>
+</tr>
+<tr>
+    <td>GC ViT-L</td>
+    <td>512 x 512</td>
+    <th>87.6</th>
+    <td>201</td>
+    <td>245.0</td>
+    <td><a href="https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_21k_large_512.pth.tar">model</a></td>
 </tr>
 
 </table>

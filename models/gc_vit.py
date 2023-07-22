@@ -32,35 +32,35 @@ def _cfg(url='', **kwargs):
 
 
 default_cfgs = {
-    'gc_vit_xxtiny': _cfg(url='https://drive.google.com/uc?export=download&id=1apSIWQCa5VhWLJws8ugMTuyKzyayw4Eh',
+    'gc_vit_xxtiny': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_1k_xxtiny.pth.tar',
                           crop_pct=1.0, 
                           input_size=(3, 224, 224), 
                           crop_mode= 'center'),
-    'gc_vit_xtiny': _cfg(url='https://drive.google.com/uc?export=download&id=1OgSbX73AXmE0beStoJf2Jtda1yin9t9m',
+    'gc_vit_xtiny': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_1k_xtiny.pth.tar',
                          crop_pct=0.875, 
                          input_size=(3, 224, 224), 
                          crop_mode= 'center'),
-    'gc_vit_tiny': _cfg(url='https://drive.google.com/uc?export=download&id=11M6AsxKLhfOpD12Nm_c7lOvIIAn9cljy',
+    'gc_vit_tiny': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_1k_tiny.pth.tar',
                         crop_pct=1.0, 
                         input_size=(3, 224, 224), 
                         crop_mode= 'center'),
-    'gc_vit_tiny2': _cfg(url='https://drive.google.com/uc?export=download&id=1cTD8VemWFiwAx0FB9cRMT-P4vRuylvmQ',
+    'gc_vit_tiny2': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_1k_tiny2.pth.tar',
                          crop_pct=0.875, 
                          input_size=(3, 224, 224), 
                          crop_mode= 'center'),
-    'gc_vit_small': _cfg(url='https://drive.google.com/uc?export=download&id=1Nn6ABKmYjylyWC0I41Q3oExrn4fTzO9Y',
+    'gc_vit_small': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_1k_small.pth.tar',
                          crop_pct=0.875, 
                          input_size=(3, 224, 224), 
                          crop_mode= 'center'),
-    'gc_vit_small2': _cfg(url='https://drive.google.com/uc?export=download&id=1E5TtYpTqILznjBLLBTlO5CGq343RbEan',
+    'gc_vit_small2': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_1k_small2.pth.tar',
                           crop_pct=0.875, 
                           input_size=(3, 224, 224), 
                           crop_mode= 'center'),
-    'gc_vit_base': _cfg(url='https://drive.google.com/uc?export=download&id=1PF7qfxKLcv_ASOMetDP75n8lC50gaqyH',
+    'gc_vit_base': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_1k_base.pth.tar',
                         crop_pct=1.0, 
                         input_size=(3, 224, 224), 
                         crop_mode= 'center'),
-    'gc_vit_large': _cfg(url='https://drive.google.com/uc?export=download&id=1Lkz1nWKTwCCUR7yQJM6zu_xwN1TR0mxS',
+    'gc_vit_large': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_1k_large.pth.tar',
                          crop_pct=1.0, 
                          input_size=(3, 224, 224), 
                          crop_mode= 'center'),
@@ -68,10 +68,14 @@ default_cfgs = {
                                  crop_pct=1.0, 
                                  input_size=(3, 224, 224), 
                                  crop_mode= 'center'),
-    'gc_vit_large_384_21k': _cfg(url='https://drive.google.com/uc?export=download&id=1P-IEhvQbJ3FjnunVkM1Z9dEpKw-tsuWv', 
+    'gc_vit_large_384_21k': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_21k_large_384.pth.tar', 
                                  crop_pct=1.0, 
                                  input_size=(3, 384, 384), 
                                  crop_mode='squash'),
+    'gc_vit_large_512_21k': _cfg(url='https://huggingface.co/nvidia/GCViT/resolve/main/gcvit_21k_large_512.pth.tar', 
+                                 crop_pct=1.0, 
+                                 input_size=(3, 512, 512), 
+                                 crop_mode='squash'),                             
 }
 
 
@@ -931,4 +935,20 @@ def gc_vit_large_384_21k(pretrained=False, **kwargs) -> GCViT:
                         **kwargs
                         )
     model = _create_gc_vit('gc_vit_large_384_21k', pretrained=pretrained, **model_kwargs)
+    return model
+
+
+@register_model
+def gc_vit_large_512_21k(pretrained=False, **kwargs) -> GCViT:
+    drop_path_rate = kwargs.pop("drop_path_rate", 0.1)
+    model_kwargs = dict(depths=[3, 4, 19, 5],
+                        num_heads=[6, 12, 24, 48],
+                        window_size=[12, 12, 32, 16],
+                        dim=192,
+                        mlp_ratio=2,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=1e-5,
+                        **kwargs
+                        )
+    model = _create_gc_vit('gc_vit_large_512_21k', pretrained=pretrained, **model_kwargs)
     return model

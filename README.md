@@ -197,7 +197,7 @@ sub-folders for each class with the following structure:
 
 ### Training on ImageNet-1K From Scratch (Multi-GPU)
 
-The `GC ViT` model can be trained from scratch on ImageNet-1K dataset by running:
+The `GC ViT` model can be trained on ImageNet-1K dataset by running:
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node <num-of-gpus> --master_port 11223  train.py \ 

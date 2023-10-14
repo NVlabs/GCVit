@@ -26,7 +26,7 @@ The architecture of GC ViT is demonstrated in the following:
 ## 💥 News 💥
 - **[10.14.2023]** 🔥 We have released the [object detection code](https://github.com/NVlabs/GCVit/tree/main/detection
 ) !
-- **[07.27.2023]** We will present GC ViT in the afternoon (1:30-3:30 HDT) ICML23 session in exhibit hall#1, poster #516.   
+- **[07.27.2023]**  We will present GC ViT in the (1:30-3:30 HDT) ICML23 session in exhibit hall#1, poster #516.   
 - **[07.22.2023]** 🔥🔥 We have released pretrained 21K GC ViT-L checkpoint for 512 x 512 resolution ! 
 - **[07.22.2023]** Pretrained checkpoints are now available in official [NVIDIA GCViT HuggingFace](https://huggingface.co/nvidia/GCViT) page !
 - **[07.21.2023]** 🔥 We have released the object detection/instance segmentation [code](./detection/README.md) ! 

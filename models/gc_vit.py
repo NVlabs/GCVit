@@ -943,7 +943,7 @@ def gc_vit_large_512_21k(pretrained=False, **kwargs) -> GCViT:
     drop_path_rate = kwargs.pop("drop_path_rate", 0.1)
     model_kwargs = dict(depths=[3, 4, 19, 5],
                         num_heads=[6, 12, 24, 48],
-                        window_size=[12, 12, 32, 16],
+                        window_size=[16, 16, 32, 16],
                         dim=192,
                         mlp_ratio=2,
                         drop_path_rate=drop_path_rate,
